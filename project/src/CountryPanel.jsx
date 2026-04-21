@@ -27,6 +27,11 @@ function CountryPanel({ country, open, onClose, onSelectIso, t, lang, countries 
   const continentLabel = t.continents[country.continent] || country.continent;
   const contMeta = window.CONTINENTS.find(x => x.id === country.continent);
 
+  // Cities data: capital entry for header pop, top 3 by pop for the list
+  const cityData = window.CITIES && window.CITIES[country.iso];
+  const capitalCityEntry = cityData && cityData.find(c => c.capital);
+  const topCities = cityData ? [...cityData].sort((a, b) => b.pop - a.pop).slice(0, 3) : [];
+
   const tagLabels = {
     landlocked: t.facts.landlocked,
     doubleLandlocked: t.facts.doubleLandlocked,
@@ -66,7 +71,17 @@ function CountryPanel({ country, open, onClose, onSelectIso, t, lang, countries 
         <div className="cp-grid">
           <div className="cp-tile wide">
             <div className="cp-tile-label">{t.fields.capital}</div>
-            <div className="cp-tile-value">📍 {country.capital[lang]}</div>
+            <div className="cp-tile-value">
+              📍 {country.capital[lang]}
+              {capitalCityEntry && (
+                <span style={{fontSize:'0.8rem', color:'var(--muted)', marginLeft:8, fontWeight:500}}>
+                  {fmtPop(capitalCityEntry.pop)}
+                  {capitalCityEntry.metro && capitalCityEntry.metro !== capitalCityEntry.pop && (
+                    <span style={{opacity:0.65}}> ({fmtPop(capitalCityEntry.metro)} {t.fields.metro})</span>
+                  )}
+                </span>
+              )}
+            </div>
           </div>
           <div className="cp-tile">
             <div className="cp-tile-label">{t.fields.population}</div>
@@ -112,11 +127,11 @@ function CountryPanel({ country, open, onClose, onSelectIso, t, lang, countries 
           </div>
         )}
 
-        {window.CITIES && window.CITIES[country.iso] && (
+        {topCities.length > 0 && (
           <div className="cp-cities">
             <div className="cp-cities-title">🏙️ {t.fields.topCities}</div>
             <div className="cp-cities-list">
-              {window.CITIES[country.iso].map((c, i) => (
+              {topCities.map((c, i) => (
                 <div key={i} className={"cp-city" + (c.capital ? " is-capital" : "")}>
                   <div className="cp-city-rank">{c.capital ? '★' : i + 1}</div>
                   <div className="cp-city-info">
