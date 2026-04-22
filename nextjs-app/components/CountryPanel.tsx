@@ -129,9 +129,9 @@ export default function CountryPanel({ country, open, onClose, onSelectIso, t, l
             <div className="cp-cities-list">
               {topCities.map((c, i) => (
                 <div key={i} className={'cp-city' + (c.capital ? ' is-capital' : '')}>
-                  <div className="cp-city-rank">{c.capital ? '★' : i + 1}</div>
+                  <div className="cp-city-rank">{i + 1}</div>
                   <div className="cp-city-info">
-                    <div className="cp-city-name">{c.name[lang]}</div>
+                    <div className="cp-city-name">{c.name[lang]}{c.capital && <span style={{ marginLeft: 4, opacity: 0.7, fontSize: '0.8em' }}>📍</span>}</div>
                     <div className="cp-city-pop">
                       <span>{fmtPop(c.pop)} <span style={{ opacity: 0.55 }}>· {t.fields.cityOnly}</span></span>
                       {c.metro && c.metro !== c.pop && (

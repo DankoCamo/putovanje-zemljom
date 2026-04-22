@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Country } from '@/lib/types'
+import { CAPS } from '@/data/capitals'
 
 interface TooltipState {
   name: { hr: string; en: string; de: string }
@@ -263,8 +264,9 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
 
     countries.forEach(c => {
       if (c.continent === 'Antarctica') return
-      const lat = c.capitalLat ?? c.lat
-      const lng = c.capitalLng ?? c.lng
+      const capCoords = CAPS[c.iso]
+      const lat = capCoords ? capCoords[0] : (c.capitalLat ?? c.lat)
+      const lng = capCoords ? capCoords[1] : (c.capitalLng ?? c.lng)
       const pos = latLngToVec3(lat, lng, earthRadius * 1.008)
       const dot = new THREE.Mesh(new THREE.SphereGeometry(0.005, 10, 10), new THREE.MeshBasicMaterial({ color: 0xff3b7f }))
       dot.position.copy(pos); dot.userData.country = c
@@ -378,8 +380,9 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
         const c = countries.find(x => x.iso === iso)
         if (!c) return
         autoRotate = false
-        const lat = c.capitalLat ?? c.lat
-        const lng = c.capitalLng ?? c.lng
+        const capCoords = CAPS[iso]
+        const lat = capCoords ? capCoords[0] : (c.capitalLat ?? c.lat)
+        const lng = capCoords ? capCoords[1] : (c.capitalLng ?? c.lng)
         targetRotY = -(lng * Math.PI / 180) - Math.PI / 2
         targetRotX = lat * Math.PI / 180
       }
