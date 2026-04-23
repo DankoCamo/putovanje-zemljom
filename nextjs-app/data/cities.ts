@@ -318,12 +318,14 @@ export const CITIES: CitiesMap = {
   PK: [
     { name:{hr:"Islamabad",en:"Islamabad",de:"Islamabad"}, pop:1015000, metro:1200000, capital:true },
     { name:{hr:"Karachi",en:"Karachi",de:"Karatschi"}, pop:17240000, metro:20300000 },
-    { name:{hr:"Lahore",en:"Lahore",de:"Lahore"}, pop:13100000, metro:13540000 }
+    { name:{hr:"Lahore",en:"Lahore",de:"Lahore"}, pop:13100000, metro:13540000 },
+    { name:{hr:"Faisalabad",en:"Faisalabad",de:"Faisalabad"}, pop:3620000, metro:3900000 }
   ],
   IN: [
     { name:{hr:"New Delhi",en:"New Delhi",de:"Neu-Delhi"}, pop:257000, metro:32940000, capital:true },
     { name:{hr:"Mumbai",en:"Mumbai",de:"Mumbai"}, pop:12480000, metro:21670000 },
-    { name:{hr:"Delhi",en:"Delhi",de:"Delhi"}, pop:16790000, metro:32940000 }
+    { name:{hr:"Bengaluru",en:"Bengaluru",de:"Bengaluru"}, pop:8440000, metro:13200000 },
+    { name:{hr:"Kolkata",en:"Kolkata",de:"Kalkutta"}, pop:4850000, metro:14850000 }
   ],
   NP: [
     { name:{hr:"Katmandu",en:"Kathmandu",de:"Kathmandu"}, pop:860000, metro:3050000, capital:true },
@@ -483,7 +485,8 @@ export const CITIES: CitiesMap = {
   MA: [
     { name:{hr:"Rabat",en:"Rabat",de:"Rabat"}, pop:580000, metro:1930000, capital:true },
     { name:{hr:"Casablanca",en:"Casablanca",de:"Casablanca"}, pop:3360000, metro:4370000 },
-    { name:{hr:"Fes",en:"Fes",de:"Fès"}, pop:1150000, metro:1250000 }
+    { name:{hr:"Fes",en:"Fes",de:"Fès"}, pop:1150000, metro:1250000 },
+    { name:{hr:"Marrakesh",en:"Marrakesh",de:"Marrakesch"}, pop:920000, metro:1070000 }
   ],
   EH: [
     { name:{hr:"El Ayoun",en:"Laayoune",de:"El Aaiún"}, pop:220000, metro:270000, capital:true },
@@ -578,7 +581,8 @@ export const CITIES: CitiesMap = {
   NG: [
     { name:{hr:"Abuja",en:"Abuja",de:"Abuja"}, pop:1235000, metro:3840000, capital:true },
     { name:{hr:"Lagos",en:"Lagos",de:"Lagos"}, pop:9000000, metro:15950000 },
-    { name:{hr:"Kano",en:"Kano",de:"Kano"}, pop:3890000, metro:4100000 }
+    { name:{hr:"Kano",en:"Kano",de:"Kano"}, pop:3890000, metro:4100000 },
+    { name:{hr:"Ibadan",en:"Ibadan",de:"Ibadan"}, pop:3600000, metro:4000000 }
   ],
   BJ: [
     { name:{hr:"Porto-Novo",en:"Porto-Novo",de:"Porto-Novo"}, pop:285000, metro:420000, capital:true },
@@ -688,7 +692,8 @@ export const CITIES: CitiesMap = {
   ZA: [
     { name:{hr:"Pretorija",en:"Pretoria",de:"Pretoria"}, pop:740000, metro:2920000, capital:true },
     { name:{hr:"Johannesburg",en:"Johannesburg",de:"Johannesburg"}, pop:5640000, metro:9610000 },
-    { name:{hr:"Cape Town",en:"Cape Town",de:"Kapstadt"}, pop:4620000, metro:4940000 }
+    { name:{hr:"Cape Town",en:"Cape Town",de:"Kapstadt"}, pop:4620000, metro:4940000 },
+    { name:{hr:"Durban",en:"Durban",de:"Durban"}, pop:3700000, metro:3900000 }
   ],
   LS: [
     { name:{hr:"Maseru",en:"Maseru",de:"Maseru"}, pop:330000, metro:520000, capital:true },
@@ -746,7 +751,8 @@ export const CITIES: CitiesMap = {
   CA: [
     { name:{hr:"Ottawa",en:"Ottawa",de:"Ottawa"}, pop:1020000, metro:1490000, capital:true },
     { name:{hr:"Toronto",en:"Toronto",de:"Toronto"}, pop:2930000, metro:6370000 },
-    { name:{hr:"Montreal",en:"Montreal",de:"Montreal"}, pop:1760000, metro:4290000 }
+    { name:{hr:"Montreal",en:"Montreal",de:"Montréal"}, pop:1760000, metro:4290000 },
+    { name:{hr:"Calgary",en:"Calgary",de:"Calgary"}, pop:1340000, metro:1590000 }
   ],
   MX: [
     { name:{hr:"Ciudad de México",en:"Mexico City",de:"Mexiko-Stadt"}, pop:9210000, metro:22510000, capital:true },
@@ -920,7 +926,8 @@ export const CITIES: CitiesMap = {
   AU: [
     { name:{hr:"Canberra",en:"Canberra",de:"Canberra"}, pop:457000, metro:470000, capital:true },
     { name:{hr:"Sydney",en:"Sydney",de:"Sydney"}, pop:5360000, metro:5360000 },
-    { name:{hr:"Melbourne",en:"Melbourne",de:"Melbourne"}, pop:5080000, metro:5080000 }
+    { name:{hr:"Melbourne",en:"Melbourne",de:"Melbourne"}, pop:5080000, metro:5080000 },
+    { name:{hr:"Brisbane",en:"Brisbane",de:"Brisbane"}, pop:2560000, metro:2560000 }
   ],
   NZ: [
     { name:{hr:"Wellington",en:"Wellington",de:"Wellington"}, pop:215000, metro:440000, capital:true },

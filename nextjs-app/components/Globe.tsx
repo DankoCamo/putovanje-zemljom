@@ -295,6 +295,40 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
     if (window.GEO_READY) buildBorders()
     else window.addEventListener('geo-ready', buildBorders, { once: true })
 
+    // Highlight selected country
+    const highlightGroup = new THREE.Group()
+    earthGroup.add(highlightGroup)
+    const highlightMats: THREE.LineBasicMaterial[] = []
+
+    function buildHighlight(iso: string | null) {
+      while (highlightGroup.children.length) {
+        const c = highlightGroup.children[0] as THREE.Line
+        c.geometry?.dispose()
+        ;(c.material as THREE.Material)?.dispose()
+        highlightGroup.remove(c)
+      }
+      highlightMats.length = 0
+      if (!iso || !window.COUNTRY_GEO) return
+      const geom = window.COUNTRY_GEO[iso]
+      if (!geom) return
+      const rings: number[][][] = []
+      if (geom.type === 'Polygon') (geom.coordinates as any).forEach((r: any) => rings.push(r))
+      else (geom.coordinates as any).forEach((poly: any) => poly.forEach((r: any) => rings.push(r)))
+      const r1 = earthRadius * 1.012, r2 = earthRadius * 1.016
+      rings.forEach(ring => {
+        if (ring.length < 2) return
+        const pts1 = ring.map(([lng, lat]: number[]) => latLngToVec3(lat, lng, r1))
+        const pts2 = ring.map(([lng, lat]: number[]) => latLngToVec3(lat, lng, r2))
+        const mat1 = new THREE.LineBasicMaterial({ color: 0xffdd00, transparent: true, opacity: 1, depthWrite: false })
+        const mat2 = new THREE.LineBasicMaterial({ color: 0xff8800, transparent: true, opacity: 0.5, depthWrite: false })
+        highlightGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts1), mat1))
+        highlightGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts2), mat2))
+        highlightMats.push(mat1, mat2)
+      })
+    }
+    if (window.GEO_READY) buildHighlight(stateRef.current.selectedIso || null)
+    else window.addEventListener('geo-ready', () => buildHighlight(stateRef.current.selectedIso || null), { once: true })
+
     const pinsGroup = new THREE.Group()
     earthGroup.add(pinsGroup)
     const pinObjects: Array<{ dot: THREE.Mesh; ring: THREE.Mesh; country: Country; pos: THREE.Vector3 }> = []
@@ -405,6 +439,9 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
       earthGroup.rotation.y = curRotY
       earthGroup.rotation.x = curRotX
       const pulse = 1 + Math.sin(pulseTime) * 0.25
+      // Pulse highlight border
+      const hPulse = 0.55 + Math.sin(pulseTime * 2.5) * 0.45
+      highlightMats.forEach((m, i) => { m.opacity = i % 2 === 0 ? hPulse : hPulse * 0.5 })
       bordersGroup.visible = !!stateRef.current.showBorders
       pinObjects.forEach(po => {
         po.ring.scale.setScalar(pulse)
@@ -424,6 +461,7 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
       ...stateRef.current,
       scene, camera, renderer, earthGroup, pinObjects, earthMat, atmosphereMat, loadTex,
       bordersGroup, buildBorders,
+      highlightGroup, buildHighlight,
       onSelectCountry,
       focusOn: (iso: string) => {
         const c = countries.find(x => x.iso === iso)
@@ -480,7 +518,12 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
     if (stateRef.current.buildBorders) stateRef.current.buildBorders()
   }, [theme])
   useEffect(() => {
-    if (focusIso && stateRef.current.focusOn) stateRef.current.focusOn(focusIso)
+    if (focusIso) {
+      stateRef.current.selectedIso = focusIso
+      if (stateRef.current.focusOn) stateRef.current.focusOn(focusIso)
+      if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(focusIso)
+      else stateRef.current.pendingHighlight = focusIso
+    }
   }, [focusIso])
 
   return (
