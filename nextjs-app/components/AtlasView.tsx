@@ -2,6 +2,7 @@
 import { useState, useMemo } from 'react'
 import { Country, Lang, I18nT } from '@/lib/types'
 import { CONTINENTS } from '@/data/continents'
+import { FLAG_DESC } from '@/data/flagDesc'
 import { flagUrl } from '@/lib/utils'
 
 interface Props {
@@ -52,13 +53,19 @@ export default function AtlasView({ countries, t, lang, onSelectCountry }: Props
         ))}
       </div>
       <div className="country-grid">
-        {filtered.map(c => (
-          <button key={c.iso} className="country-card" onClick={() => onSelectCountry(c)}>
-            <img src={flagUrl(c.iso)} alt="" loading="lazy" />
-            <div className="country-card-name">{c.name[lang]}</div>
-            <div className="country-card-capital">{c.capital[lang]}</div>
-          </button>
-        ))}
+        {filtered.map(c => {
+          const desc = FLAG_DESC[c.iso]
+          return (
+            <button key={c.iso} className="country-card" onClick={() => onSelectCountry(c)}>
+              <img src={flagUrl(c.iso)} alt="" loading="lazy" />
+              <div className="country-card-name">{c.name[lang]}</div>
+              <div className="country-card-capital">{c.capital[lang]}</div>
+              {desc && (
+                <div className="country-card-desc">{desc[lang]}</div>
+              )}
+            </button>
+          )
+        })}
       </div>
     </div>
   )

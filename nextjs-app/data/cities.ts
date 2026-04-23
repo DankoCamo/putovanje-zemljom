@@ -740,7 +740,8 @@ export const CITIES: CitiesMap = {
   US: [
     { name:{hr:"Washington D.C.",en:"Washington, D.C.",de:"Washington, D.C."}, pop:680000, metro:6380000, capital:true },
     { name:{hr:"New York",en:"New York City",de:"New York"}, pop:8260000, metro:19500000 },
-    { name:{hr:"Los Angeles",en:"Los Angeles",de:"Los Angeles"}, pop:3820000, metro:12800000 }
+    { name:{hr:"Los Angeles",en:"Los Angeles",de:"Los Angeles"}, pop:3820000, metro:12800000 },
+    { name:{hr:"Chicago",en:"Chicago",de:"Chicago"}, pop:2670000, metro:9580000 }
   ],
   CA: [
     { name:{hr:"Ottawa",en:"Ottawa",de:"Ottawa"}, pop:1020000, metro:1490000, capital:true },

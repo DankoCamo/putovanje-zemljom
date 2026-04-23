@@ -567,6 +567,14 @@ button {
   color: var(--muted);
   margin-top: 2px;
 }
+.country-card-desc {
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-top: 6px;
+  text-align: left;
+  opacity: 0.85;
+}
 
 /* -------- Compare view -------- */
 .compare-view {

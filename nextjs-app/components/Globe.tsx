@@ -138,6 +138,43 @@ function latLngToVec3(lat: number, lng: number, radius: number): THREE.Vector3 {
   )
 }
 
+function vec3ToLatLng(v: THREE.Vector3): [number, number] {
+  const r = v.length()
+  const phi = Math.acos(Math.max(-1, Math.min(1, v.y / r)))
+  const theta = Math.atan2(v.z, -v.x)
+  const lat = 90 - phi * (180 / Math.PI)
+  const lng = theta * (180 / Math.PI) - 180
+  return [lat, lng]
+}
+
+function pointInRing(lng: number, lat: number, ring: number[][]): boolean {
+  let inside = false
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i], [xj, yj] = ring[j]
+    if (((yi > lat) !== (yj > lat)) && lng < (xj - xi) * (lat - yi) / (yj - yi) + xi) inside = !inside
+  }
+  return inside
+}
+
+function findCountryAtLatLng(lat: number, lng: number, countries: Country[]): Country | null {
+  const geo = window.COUNTRY_GEO
+  if (!geo) return null
+  for (const c of countries) {
+    const geom = geo[c.iso]
+    if (!geom) continue
+    let hit = false
+    if (geom.type === 'Polygon') {
+      hit = pointInRing(lng, lat, geom.coordinates[0] as unknown as number[][])
+    } else {
+      hit = (geom.coordinates as unknown as number[][][][][]).some(
+        poly => pointInRing(lng, lat, poly[0] as unknown as number[][])
+      )
+    }
+    if (hit) return c
+  }
+  return null
+}
+
 interface Props {
   countries: Country[]
   onSelectCountry: (c: Country) => void
@@ -325,10 +362,22 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
       const my = -((p.clientY - rect.top) / rect.height) * 2 + 1
       const raycaster = new THREE.Raycaster()
       raycaster.setFromCamera(new THREE.Vector2(mx, my), camera)
-      const hits = raycaster.intersectObjects(pinsGroup.children)
-      const visHits = hits.filter(h => h.object.visible)
-      if (visHits.length && visHits[0].object.userData.country) {
-        stateRef.current.onSelectCountry?.(visHits[0].object.userData.country)
+
+      // First try pins
+      const pinHits = raycaster.intersectObjects(pinsGroup.children).filter(h => h.object.visible)
+      if (pinHits.length && pinHits[0].object.userData.country) {
+        stateRef.current.onSelectCountry?.(pinHits[0].object.userData.country)
+        return
+      }
+
+      // Fall back to earth surface click → point-in-polygon
+      const earthHits = raycaster.intersectObject(earthMesh)
+      if (earthHits.length) {
+        const worldPt = earthHits[0].point
+        const localPt = earthGroup.worldToLocal(worldPt.clone())
+        const [lat, lng] = vec3ToLatLng(localPt)
+        const found = findCountryAtLatLng(lat, lng, countries)
+        if (found) stateRef.current.onSelectCountry?.(found)
       }
     }
     function onWheel(e: WheelEvent) {
