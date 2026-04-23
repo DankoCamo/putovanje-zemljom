@@ -4,7 +4,7 @@ export const I18N: I18nMap = {
   hr: {
     appTitle: "Putovanje Zemljom",
     appSubtitle: "Otkrij svijet — države, glavni gradovi, zastave i kvizovi",
-    nav: { globe: "Globus", atlas: "Zastave", compare: "Usporedba", quiz: "Kvizovi" },
+    nav: { globe: "Globus", atlas: "Zastave", compare: "Usporedba", quiz: "Kvizovi", top10: "Top 10" },
     search: "Traži državu…",
     allContinents: "Svi kontinenti",
     continents: {
@@ -63,7 +63,7 @@ export const I18N: I18nMap = {
   en: {
     appTitle: "Putovanje Zemljom",
     appSubtitle: "Discover the world — countries, capitals, flags and quizzes",
-    nav: { globe: "Globe", atlas: "Flags", compare: "Compare", quiz: "Quizzes" },
+    nav: { globe: "Globe", atlas: "Flags", compare: "Compare", quiz: "Quizzes", top10: "Top 10" },
     search: "Search country…",
     allContinents: "All continents",
     continents: {
@@ -122,7 +122,7 @@ export const I18N: I18nMap = {
   de: {
     appTitle: "Putovanje Zemljom",
     appSubtitle: "Entdecke die Welt — Länder, Hauptstädte, Flaggen und Quizze",
-    nav: { globe: "Globus", atlas: "Flaggen", compare: "Vergleich", quiz: "Quizze" },
+    nav: { globe: "Globus", atlas: "Flaggen", compare: "Vergleich", quiz: "Quizze", top10: "Top 10" },
     search: "Land suchen…",
     allContinents: "Alle Kontinente",
     continents: {
