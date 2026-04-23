@@ -10,7 +10,7 @@ export default function TopBar() {
     <header className="topbar">
       <div className="logo">
         <span className="logo-mark">🌍</span>
-        <span>{t.appTitle}</span>
+        <span className="logo-text">{t.appTitle}</span>
       </div>
       <nav className="nav">
         {(['globe', 'atlas', 'compare', 'quiz', 'top10'] as const).map(v => (
