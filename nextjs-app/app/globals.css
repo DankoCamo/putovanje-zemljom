@@ -1104,6 +1104,32 @@ button {
   white-space: nowrap;
 }
 
+.top10-currency-toggle {
+  display: flex;
+  margin-left: auto;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.top10-currency-toggle button {
+  padding: 5px 14px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.top10-currency-toggle button.active {
+  background: var(--accent-3);
+  color: #fff;
+}
+.top10-currency-toggle button:hover:not(.active) {
+  background: var(--border);
+}
+
 .top10-note {
   margin-top: 24px;
   font-size: 0.78rem;

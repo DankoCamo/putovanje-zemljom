@@ -3,6 +3,7 @@ export interface T10Entry {
   value: string
   iso?: string
   extra?: { hr: string; en: string; de: string }
+  rawUsd?: number  // raw value in USD (billions for gdp, full for gdp_capita) — used for EUR toggle
 }
 
 export interface T10List {
@@ -10,6 +11,7 @@ export interface T10List {
   icon: string
   title: { hr: string; en: string; de: string }
   unit: { hr: string; en: string; de: string }
+  currencyToggle?: boolean
   entries: T10Entry[]
 }
 
@@ -54,54 +56,56 @@ export const TOP10_LISTS: T10List[] = [
     id: 'gdp',
     icon: '💰',
     title: { hr: 'BDP po državi (nominalni)', en: 'GDP by country (nominal)', de: 'BIP nach Land (nominal)' },
-    unit: { hr: 'mlrd USD', en: 'USD billion', de: 'Mrd. USD' },
+    unit: { hr: 'mlrd', en: 'bn', de: 'Mrd.' },
+    currencyToggle: true,
     entries: [
-      { name:{hr:'SAD',en:'USA',de:'USA'}, iso:'US', value:'29.170 mlrd', extra:{hr:'svjetska ekonomija br. 1',en:'world\'s #1 economy',de:'weltweit größte Wirtschaft'} },
-      { name:{hr:'Kina',en:'China',de:'China'}, iso:'CN', value:'19.530 mlrd', extra:{hr:'ubrzani rast',en:'rapid growth trajectory',de:'rasantes Wachstum'} },
-      { name:{hr:'Njemačka',en:'Germany',de:'Deutschland'}, iso:'DE', value:'4.590 mlrd', extra:{hr:'najveće u EU',en:'largest in EU',de:'größte in der EU'} },
-      { name:{hr:'Japan',en:'Japan',de:'Japan'}, iso:'JP', value:'4.290 mlrd', extra:{hr:'4. svjetska ekonomija',en:'4th world economy',de:'4. Weltwirtschaft'} },
-      { name:{hr:'Indija',en:'India',de:'Indien'}, iso:'IN', value:'4.110 mlrd', extra:{hr:'najbrži rast u G20',en:'fastest growing in G20',de:'schnellstes Wachstum in G20'} },
-      { name:{hr:'Ujedinjeno Kraljevstvo',en:'United Kingdom',de:'Vereinigtes Königreich'}, iso:'GB', value:'3.500 mlrd', extra:{hr:'6. svjetska ekonomija',en:'6th world economy',de:'6. Weltwirtschaft'} },
-      { name:{hr:'Francuska',en:'France',de:'Frankreich'}, iso:'FR', value:'3.210 mlrd', extra:{hr:'7. svjetska ekonomija',en:'7th world economy',de:'7. Weltwirtschaft'} },
-      { name:{hr:'Brazil',en:'Brazil',de:'Brasilien'}, iso:'BR', value:'2.330 mlrd', extra:{hr:'najveća u J. Americi',en:'largest in S. America',de:'größte in S. Amerika'} },
-      { name:{hr:'Italija',en:'Italy',de:'Italien'}, iso:'IT', value:'2.300 mlrd', extra:{hr:'9. svjetska ekonomija',en:'9th world economy',de:'9. Weltwirtschaft'} },
-      { name:{hr:'Kanada',en:'Canada',de:'Kanada'}, iso:'CA', value:'2.230 mlrd', extra:{hr:'10. svjetska ekonomija',en:'10th world economy',de:'10. Weltwirtschaft'} },
+      { name:{hr:'SAD',en:'USA',de:'USA'}, iso:'US', rawUsd:29170, value:'29.170 mlrd $', extra:{hr:'svjetska ekonomija br. 1',en:'world\'s #1 economy',de:'weltweit größte Wirtschaft'} },
+      { name:{hr:'Kina',en:'China',de:'China'}, iso:'CN', rawUsd:19530, value:'19.530 mlrd $', extra:{hr:'ubrzani rast',en:'rapid growth trajectory',de:'rasantes Wachstum'} },
+      { name:{hr:'Njemačka',en:'Germany',de:'Deutschland'}, iso:'DE', rawUsd:4590, value:'4.590 mlrd $', extra:{hr:'najveće u EU',en:'largest in EU',de:'größte in der EU'} },
+      { name:{hr:'Japan',en:'Japan',de:'Japan'}, iso:'JP', rawUsd:4290, value:'4.290 mlrd $', extra:{hr:'4. svjetska ekonomija',en:'4th world economy',de:'4. Weltwirtschaft'} },
+      { name:{hr:'Indija',en:'India',de:'Indien'}, iso:'IN', rawUsd:4110, value:'4.110 mlrd $', extra:{hr:'najbrži rast u G20',en:'fastest growing in G20',de:'schnellstes Wachstum in G20'} },
+      { name:{hr:'Ujedinjeno Kraljevstvo',en:'United Kingdom',de:'Vereinigtes Königreich'}, iso:'GB', rawUsd:3500, value:'3.500 mlrd $', extra:{hr:'6. svjetska ekonomija',en:'6th world economy',de:'6. Weltwirtschaft'} },
+      { name:{hr:'Francuska',en:'France',de:'Frankreich'}, iso:'FR', rawUsd:3210, value:'3.210 mlrd $', extra:{hr:'7. svjetska ekonomija',en:'7th world economy',de:'7. Weltwirtschaft'} },
+      { name:{hr:'Brazil',en:'Brazil',de:'Brasilien'}, iso:'BR', rawUsd:2330, value:'2.330 mlrd $', extra:{hr:'najveća u J. Americi',en:'largest in S. America',de:'größte in S. Amerika'} },
+      { name:{hr:'Italija',en:'Italy',de:'Italien'}, iso:'IT', rawUsd:2300, value:'2.300 mlrd $', extra:{hr:'9. svjetska ekonomija',en:'9th world economy',de:'9. Weltwirtschaft'} },
+      { name:{hr:'Kanada',en:'Canada',de:'Kanada'}, iso:'CA', rawUsd:2230, value:'2.230 mlrd $', extra:{hr:'10. svjetska ekonomija',en:'10th world economy',de:'10. Weltwirtschaft'} },
     ],
   },
   {
     id: 'gdp_capita',
     icon: '💵',
     title: { hr: 'BDP po stanovniku (PKM)', en: 'GDP per capita (PPP)', de: 'BIP pro Kopf (KKP)' },
-    unit: { hr: 'USD po stanovniku', en: 'USD per capita', de: 'USD pro Kopf' },
+    unit: { hr: 'po stanovniku', en: 'per capita', de: 'pro Kopf' },
+    currencyToggle: true,
     entries: [
-      { name:{hr:'Luksemburg',en:'Luxembourg',de:'Luxemburg'}, iso:'LU', value:'143.000', extra:{hr:'financijsko središte EU',en:'EU financial hub',de:'EU-Finanzzentrum'} },
-      { name:{hr:'Singapur',en:'Singapore',de:'Singapur'}, iso:'SG', value:'140.000', extra:{hr:'azijski tigar',en:'Asian tiger economy',de:'Asiatischer Tiger'} },
-      { name:{hr:'Irska',en:'Ireland',de:'Irland'}, iso:'IE', value:'134.000', extra:{hr:'tech hub Europe',en:'tech hub of Europe',de:'Tech-Hub Europas'} },
-      { name:{hr:'Norveška',en:'Norway',de:'Norwegen'}, iso:'NO', value:'108.000', extra:{hr:'nafta i suvereni fond',en:'oil & sovereign wealth fund',de:'Öl und Staatsfonds'} },
-      { name:{hr:'Katar',en:'Qatar',de:'Katar'}, iso:'QA', value:'96.000', extra:{hr:'plin kao pokretač',en:'gas-powered economy',de:'gasgetriebene Wirtschaft'} },
-      { name:{hr:'Švicarska',en:'Switzerland',de:'Schweiz'}, iso:'CH', value:'95.000', extra:{hr:'financije i farmacija',en:'finance & pharma hub',de:'Finanz- und Pharmahub'} },
-      { name:{hr:'SAD',en:'USA',de:'USA'}, iso:'US', value:'88.000', extra:{hr:'7. po BDP-u per capita',en:'7th by GDP per capita',de:'7. nach BIP pro Kopf'} },
-      { name:{hr:'UAE',en:'UAE',de:'VAE'}, iso:'AE', value:'83.000', extra:{hr:'diversifikacija izvan nafte',en:'diversifying beyond oil',de:'Diversifizierung jenseits Öl'} },
-      { name:{hr:'Danska',en:'Denmark',de:'Dänemark'}, iso:'DK', value:'78.000', extra:{hr:'9. po BDP-u per capita',en:'9th by GDP per capita',de:'9. nach BIP pro Kopf'} },
-      { name:{hr:'Nizozemska',en:'Netherlands',de:'Niederlande'}, iso:'NL', value:'74.000', extra:{hr:'logistički centar Europe',en:'logistics hub of Europe',de:'Logistikzentrum Europas'} },
+      { name:{hr:'Luksemburg',en:'Luxembourg',de:'Luxemburg'}, iso:'LU', rawUsd:143000, value:'143.000 $', extra:{hr:'financijsko središte EU',en:'EU financial hub',de:'EU-Finanzzentrum'} },
+      { name:{hr:'Singapur',en:'Singapore',de:'Singapur'}, iso:'SG', rawUsd:140000, value:'140.000 $', extra:{hr:'azijski tigar',en:'Asian tiger economy',de:'Asiatischer Tiger'} },
+      { name:{hr:'Irska',en:'Ireland',de:'Irland'}, iso:'IE', rawUsd:134000, value:'134.000 $', extra:{hr:'tech hub Europe',en:'tech hub of Europe',de:'Tech-Hub Europas'} },
+      { name:{hr:'Norveška',en:'Norway',de:'Norwegen'}, iso:'NO', rawUsd:108000, value:'108.000 $', extra:{hr:'nafta i suvereni fond',en:'oil & sovereign wealth fund',de:'Öl und Staatsfonds'} },
+      { name:{hr:'Katar',en:'Qatar',de:'Katar'}, iso:'QA', rawUsd:96000, value:'96.000 $', extra:{hr:'plin kao pokretač',en:'gas-powered economy',de:'gasgetriebene Wirtschaft'} },
+      { name:{hr:'Švicarska',en:'Switzerland',de:'Schweiz'}, iso:'CH', rawUsd:95000, value:'95.000 $', extra:{hr:'financije i farmacija',en:'finance & pharma hub',de:'Finanz- und Pharmahub'} },
+      { name:{hr:'SAD',en:'USA',de:'USA'}, iso:'US', rawUsd:88000, value:'88.000 $', extra:{hr:'7. po BDP-u per capita',en:'7th by GDP per capita',de:'7. nach BIP pro Kopf'} },
+      { name:{hr:'UAE',en:'UAE',de:'VAE'}, iso:'AE', rawUsd:83000, value:'83.000 $', extra:{hr:'diversifikacija izvan nafte',en:'diversifying beyond oil',de:'Diversifizierung jenseits Öl'} },
+      { name:{hr:'Danska',en:'Denmark',de:'Dänemark'}, iso:'DK', rawUsd:78000, value:'78.000 $', extra:{hr:'9. po BDP-u per capita',en:'9th by GDP per capita',de:'9. nach BIP pro Kopf'} },
+      { name:{hr:'Nizozemska',en:'Netherlands',de:'Niederlande'}, iso:'NL', rawUsd:74000, value:'74.000 $', extra:{hr:'logistički centar Europe',en:'logistics hub of Europe',de:'Logistikzentrum Europas'} },
     ],
   },
   {
     id: 'cities',
     icon: '🏙️',
-    title: { hr: 'Najveći gradovi (uži grad)', en: 'Largest cities (city proper)', de: 'Größte Städte (Stadtgebiet)' },
+    title: { hr: 'Najveći gradovi (granice grada)', en: 'Largest cities (city proper)', de: 'Größte Städte (Stadtgebiet)' },
     unit: { hr: 'milijuna stanovnika', en: 'million people', de: 'Millionen Einwohner' },
     entries: [
-      { name:{hr:'Istanbul',en:'Istanbul',de:'Istanbul'}, iso:'TR', value:'15,65 mil', extra:{hr:'Turska',en:'Turkey',de:'Türkei'} },
-      { name:{hr:'Karachi',en:'Karachi',de:'Karatschi'}, iso:'PK', value:'14,90 mil', extra:{hr:'Pakistan',en:'Pakistan',de:'Pakistan'} },
-      { name:{hr:'Tokio',en:'Tokyo',de:'Tokio'}, iso:'JP', value:'13,96 mil', extra:{hr:'Japan',en:'Japan',de:'Japan'} },
-      { name:{hr:'Guangzhou',en:'Guangzhou',de:'Guangzhou'}, iso:'CN', value:'13,50 mil', extra:{hr:'Kina',en:'China',de:'China'} },
-      { name:{hr:'Mumbai',en:'Mumbai',de:'Mumbai'}, iso:'IN', value:'12,48 mil', extra:{hr:'Indija',en:'India',de:'Indien'} },
-      { name:{hr:'Moskva',en:'Moscow',de:'Moskau'}, iso:'RU', value:'13,10 mil', extra:{hr:'Rusija',en:'Russia',de:'Russland'} },
-      { name:{hr:'Peking',en:'Beijing',de:'Peking'}, iso:'CN', value:'21,54 mil', extra:{hr:'NCT Kina',en:'NCR China',de:'NCR China'} },
-      { name:{hr:'Šangaj',en:'Shanghai',de:'Shanghai'}, iso:'CN', value:'24,87 mil', extra:{hr:'Kina',en:'China',de:'China'} },
-      { name:{hr:'Lagos',en:'Lagos',de:'Lagos'}, iso:'NG', value:'9,00 mil', extra:{hr:'Nigerija',en:'Nigeria',de:'Nigeria'} },
-      { name:{hr:'Daka',en:'Dhaka',de:'Dhaka'}, iso:'BD', value:'10,28 mil', extra:{hr:'Bangladeš',en:'Bangladesh',de:'Bangladesch'} },
+      { name:{hr:'Chongqing',en:'Chongqing',de:'Chongqing'}, iso:'CN', value:'32,12 mil', extra:{hr:'Kina — uključuje ruralne četvrti',en:'China — incl. rural districts',de:'China — inkl. Landbezirke'} },
+      { name:{hr:'Šangaj',en:'Shanghai',de:'Shanghai'}, iso:'CN', value:'24,87 mil', extra:{hr:'Kina — financijsko središte',en:'China — financial hub',de:'China — Finanzzentrum'} },
+      { name:{hr:'Peking',en:'Beijing',de:'Peking'}, iso:'CN', value:'21,89 mil', extra:{hr:'Kina — glavni grad',en:'China — capital',de:'China — Hauptstadt'} },
+      { name:{hr:'Kinšasa',en:'Kinshasa',de:'Kinshasa'}, iso:'CD', value:'17,07 mil', extra:{hr:'DR Kongo — najbrže rastuća megalopola',en:'DR Congo — fastest growing megacity',de:'DR Kongo — am schnellsten wachsende Megastadt'} },
+      { name:{hr:'Lagos',en:'Lagos',de:'Lagos'}, iso:'NG', value:'15,95 mil', extra:{hr:'Nigerija — ekonomska prijestolnica',en:'Nigeria — economic capital',de:'Nigeria — Wirtschaftsmetropole'} },
+      { name:{hr:'Istanbul',en:'Istanbul',de:'Istanbul'}, iso:'TR', value:'15,65 mil', extra:{hr:'Turska — najveći grad Europe',en:'Turkey — Europe\'s largest city',de:'Türkei — größte Stadt Europas'} },
+      { name:{hr:'Karachi',en:'Karachi',de:'Karatschi'}, iso:'PK', value:'14,91 mil', extra:{hr:'Pakistan — luka i financijsko središte',en:'Pakistan — port & financial hub',de:'Pakistan — Hafen & Finanzzentrum'} },
+      { name:{hr:'Tianjin',en:'Tianjin',de:'Tianjin'}, iso:'CN', value:'13,87 mil', extra:{hr:'Kina — luka uz Peking',en:'China — port near Beijing',de:'China — Hafenstadt bei Peking'} },
+      { name:{hr:'Moskva',en:'Moscow',de:'Moskau'}, iso:'RU', value:'13,10 mil', extra:{hr:'Rusija — glavni grad',en:'Russia — capital',de:'Russland — Hauptstadt'} },
+      { name:{hr:'Daka',en:'Dhaka',de:'Dhaka'}, iso:'BD', value:'10,36 mil', extra:{hr:'Bangladeš — jedna od najgušćih aglomeracija',en:'Bangladesh — one of the densest cities',de:'Bangladesch — eine der dichtesten Städte'} },
     ],
   },
   {
@@ -110,16 +114,16 @@ export const TOP10_LISTS: T10List[] = [
     title: { hr: 'Najveće metropole (metropolitansko područje)', en: 'Largest metro areas', de: 'Größte Metropolregionen' },
     unit: { hr: 'milijuna stanovnika', en: 'million people', de: 'Millionen Einwohner' },
     entries: [
-      { name:{hr:'Tokio',en:'Tokyo',de:'Tokio'}, iso:'JP', value:'37,4 mil', extra:{hr:'Japonska',en:'Japan',de:'Japan'} },
-      { name:{hr:'Delhi',en:'Delhi NCR',de:'Delhi NCR'}, iso:'IN', value:'32,9 mil', extra:{hr:'Indija',en:'India',de:'Indien'} },
+      { name:{hr:'Tokio',en:'Tokyo',de:'Tokio'}, iso:'JP', value:'37,4 mil', extra:{hr:'Japan — najveća metropola na svijetu',en:'Japan — world\'s largest metro',de:'Japan — weltgrößte Metropole'} },
+      { name:{hr:'Jakarta (Jabodetabek)',en:'Jakarta (Jabodetabek)',de:'Jakarta (Jabodetabek)'}, iso:'ID', value:'34,5 mil', extra:{hr:'Indonezija — 2. najveća metropola',en:'Indonesia — 2nd largest metro',de:'Indonesien — 2.-größte Metropole'} },
+      { name:{hr:'Delhi',en:'Delhi NCR',de:'Delhi NCR'}, iso:'IN', value:'32,9 mil', extra:{hr:'Indija — brzo raste',en:'India — rapidly growing',de:'Indien — schnell wachsend'} },
       { name:{hr:'Šangaj',en:'Shanghai',de:'Shanghai'}, iso:'CN', value:'29,9 mil', extra:{hr:'Kina',en:'China',de:'China'} },
-      { name:{hr:'Daka',en:'Dhaka',de:'Dhaka'}, iso:'BD', value:'23,2 mil', extra:{hr:'Bangladeš',en:'Bangladesh',de:'Bangladesch'} },
-      { name:{hr:'São Paulo',en:'São Paulo',de:'São Paulo'}, iso:'BR', value:'22,6 mil', extra:{hr:'Brazil',en:'Brazil',de:'Brasilien'} },
+      { name:{hr:'São Paulo',en:'São Paulo',de:'São Paulo'}, iso:'BR', value:'22,8 mil', extra:{hr:'Brazil — najveća u Latinskoj Americi',en:'Brazil — largest in Latin America',de:'Brasilien — größte in Lateinamerika'} },
+      { name:{hr:'Kairo',en:'Cairo',de:'Kairo'}, iso:'EG', value:'22,6 mil', extra:{hr:'Egipat — najveća u Africi',en:'Egypt — largest in Africa',de:'Ägypten — größte in Afrika'} },
       { name:{hr:'Ciudad de México',en:'Mexico City',de:'Mexiko-Stadt'}, iso:'MX', value:'22,5 mil', extra:{hr:'Meksiko',en:'Mexico',de:'Mexiko'} },
-      { name:{hr:'Kairo',en:'Cairo',de:'Kairo'}, iso:'EG', value:'22,6 mil', extra:{hr:'Egipat',en:'Egypt',de:'Ägypten'} },
-      { name:{hr:'Peking',en:'Beijing',de:'Peking'}, iso:'CN', value:'22,0 mil', extra:{hr:'Kina',en:'China',de:'China'} },
-      { name:{hr:'Mumbai',en:'Mumbai',de:'Mumbai'}, iso:'IN', value:'21,7 mil', extra:{hr:'Indija',en:'India',de:'Indien'} },
-      { name:{hr:'Osaka',en:'Osaka',de:'Osaka'}, iso:'JP', value:'19,1 mil', extra:{hr:'Japonska',en:'Japan',de:'Japan'} },
+      { name:{hr:'Peking',en:'Beijing',de:'Peking'}, iso:'CN', value:'22,0 mil', extra:{hr:'Kina — glavni grad',en:'China — capital',de:'China — Hauptstadt'} },
+      { name:{hr:'Mumbai',en:'Mumbai',de:'Mumbai'}, iso:'IN', value:'21,7 mil', extra:{hr:'Indija — financijsko središte',en:'India — financial hub',de:'Indien — Finanzzentrum'} },
+      { name:{hr:'Daka',en:'Dhaka',de:'Dhaka'}, iso:'BD', value:'21,0 mil', extra:{hr:'Bangladeš',en:'Bangladesh',de:'Bangladesch'} },
     ],
   },
   {
