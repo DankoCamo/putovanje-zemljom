@@ -194,7 +194,7 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
   // Load GeoJSON once
   useEffect(() => {
     if (window.GEO_READY) return
-    fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json')
+    fetch('/countries-50m.json')
       .then(r => r.json())
       .then(decodeTopoJSON)
       .catch(e => console.error('Failed to load geo data:', e))
