@@ -2,6 +2,7 @@
 import { Country, Lang, I18nT, City } from '@/lib/types'
 import { CONTINENTS } from '@/data/continents'
 import { CITIES } from '@/data/cities'
+import { COUNTRY_FACTS } from '@/data/country-facts'
 import { flagUrl, flagUrlSmall, fmtPop, fmtArea, formatCurrency } from '@/lib/utils'
 
 interface Props {
@@ -101,10 +102,14 @@ export default function CountryPanel({ country, open, onClose, onSelectIso, t, l
           </div>
         </div>
 
-        {country.fact && (
+        {(COUNTRY_FACTS[country.iso] ?? (country.fact ? [country.fact] : [])).length > 0 && (
           <div className="cp-fact">
             <div className="cp-fact-title">💡 {t.fields.factTitle}</div>
-            <div style={{ fontSize: '0.95rem', lineHeight: 1.45 }}>{country.fact[lang]}</div>
+            <ul style={{ margin: '0.4rem 0 0', padding: '0 0 0 1.1rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
+              {(COUNTRY_FACTS[country.iso] ?? [country.fact!]).map((f, i) => (
+                <li key={i} style={{ marginBottom: '0.25rem' }}>{f[lang]}</li>
+              ))}
+            </ul>
           </div>
         )}
 

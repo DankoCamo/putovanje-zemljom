@@ -30,7 +30,7 @@ export const I18N: I18nMap = {
         shape: "Pogodi po obliku", continent: "Pogodi kontinent", timed: "Utrka s vremenom",
       },
       levels: { easy: "Lagano", medium: "Srednje", hard: "Teško" },
-      start: "Začni", next: "Sljedeće", restart: "Ponovi",
+      start: "Kreni", next: "Sljedeće", restart: "Ponovi",
       correct: "Točno!", wrong: "Krivo!", score: "Rezultat", time: "Vrijeme",
       finalScore: "Konačni rezultat", question: "Pitanje", of: "od", seconds: "s",
       capitalPrompt: "Koji je glavni grad države",

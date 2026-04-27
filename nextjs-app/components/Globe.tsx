@@ -363,7 +363,7 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
       const p = (e as TouchEvent).touches ? (e as TouchEvent).touches[0] : e as MouseEvent
       if (isDragging) {
         const dx = p.clientX - prev.x, dy = p.clientY - prev.y
-        if (Math.abs(dx) + Math.abs(dy) > 3) dragMoved = true
+        if (Math.abs(dx) + Math.abs(dy) > 8) dragMoved = true
         targetRotY += dx * 0.005
         targetRotX += dy * 0.005
         targetRotX = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, targetRotX))
