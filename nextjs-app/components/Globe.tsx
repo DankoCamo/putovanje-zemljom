@@ -143,7 +143,8 @@ function vec3ToLatLng(v: THREE.Vector3): [number, number] {
   const phi = Math.acos(Math.max(-1, Math.min(1, v.y / r)))
   const theta = Math.atan2(v.z, -v.x)
   const lat = 90 - phi * (180 / Math.PI)
-  const lng = theta * (180 / Math.PI) - 180
+  let lng = theta * (180 / Math.PI) - 180
+  if (lng < -180) lng += 360  // atan2 wraps at ±π; shift Eastern Hemisphere back
   return [lat, lng]
 }
 
