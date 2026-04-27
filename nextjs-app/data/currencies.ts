@@ -40,6 +40,7 @@ export const CUR_NAMES = {
     NZD:"Novozelandski dolar", PGK:"Papuanska kina", FJD:"Fidžijski dolar",
     SBD:"Salamonski dolar", VUV:"Vanuatski vatu", WST:"Samoanska tala", TOP:"Tongaška pa'anga",
     XPF:"CFP franak", KID:"Kiribatski dolar",
+    SUR:"Sovjetska rublja", YUD:"Jugoslavenski dinar", CSK:"Čehoslovačka kruna", DDM:"Istočnonjemačka marka",
   },
   en: {
     EUR:"Euro", USD:"US Dollar", GBP:"British Pound", CHF:"Swiss Franc",
@@ -82,6 +83,7 @@ export const CUR_NAMES = {
     PGK:"Papua New Guinean Kina", FJD:"Fijian Dollar", SBD:"Solomon Islands Dollar",
     VUV:"Vanuatu Vatu", WST:"Samoan Tala", TOP:"Tongan Paʻanga", XPF:"CFP Franc",
     KID:"Kiribati Dollar",
+    SUR:"Soviet Ruble", YUD:"Yugoslav Dinar", CSK:"Czechoslovak Koruna", DDM:"East German Mark",
   },
   de: {
     EUR:"Euro", USD:"US-Dollar", GBP:"Britisches Pfund", CHF:"Schweizer Franken",
@@ -132,5 +134,6 @@ export const CUR_NAMES = {
     AUD:"Australischer Dollar", NZD:"Neuseeland-Dollar", PGK:"Papua-Neuguinea-Kina",
     FJD:"Fidschi-Dollar", SBD:"Salomonen-Dollar", VUV:"Vanuatu-Vatu",
     WST:"Samoa-Tala", TOP:"Tonga-Paʻanga", XPF:"CFP-Franc", KID:"Kiribati-Dollar",
+    SUR:"Sowjetischer Rubel", YUD:"Jugoslawischer Dinar", CSK:"Tschechoslowakische Krone", DDM:"Ostmark",
   },
 }

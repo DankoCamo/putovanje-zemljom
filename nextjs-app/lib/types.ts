@@ -18,6 +18,7 @@ export interface Country {
   neighbors: string[]
   tags: string[]
   fact: MultiLang
+  dissolved?: MultiLang
 }
 
 export type ContinentId =

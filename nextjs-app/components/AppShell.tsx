@@ -1,9 +1,8 @@
 'use client'
-import { useState } from 'react'
 import { AppProvider, useApp } from '@/context/AppContext'
 import { Country } from '@/lib/types'
 import { I18N } from '@/data/i18n'
-import { HISTORICAL_COUNTRIES_1960, type HistoricalCountry } from '@/data/countries-1960'
+import { HISTORICAL_COUNTRIES_1960 } from '@/data/countries-1960'
 import TopBar from './TopBar'
 import TweaksPanel from './TweaksPanel'
 import CountryPanel from './CountryPanel'
@@ -13,11 +12,13 @@ import QuizView from './QuizView'
 import GlobeWrapper from './GlobeWrapper'
 import Top10View from './Top10View'
 
+const ALL_COUNTRIES_COMBINED = (countries: Country[]) => [...countries, ...HISTORICAL_COUNTRIES_1960]
+
 function Shell({ countries }: { countries: Country[] }) {
   const {
     view, setView,
     selected, panelOpen, focusIso,
-    openCountry, closePanel, pickIso,
+    openCountry, closePanel,
     tweakState,
     showTweaks,
     introSeen, dismissIntro,
@@ -25,20 +26,23 @@ function Shell({ countries }: { countries: Country[] }) {
     era, setEra,
   } = useApp()
 
-  const [historicalCountry, setHistoricalCountry] = useState<HistoricalCountry | null>(null)
-
   const t = I18N[lang]
 
   function handleSelectHistorical(iso: string) {
-    const hc = HISTORICAL_COUNTRIES_1960.find(h => h.iso === iso) || null
-    setHistoricalCountry(hc)
-    closePanel()
+    const hc = HISTORICAL_COUNTRIES_1960.find(h => h.iso === iso)
+    if (hc) openCountry(hc)
+  }
+
+  function handlePickIso(iso: string) {
+    const current = countries.find(c => c.iso === iso)
+    if (current) { openCountry(current); return }
+    const historical = HISTORICAL_COUNTRIES_1960.find(h => h.iso === iso)
+    if (historical) openCountry(historical)
   }
 
   function handleEraToggle() {
     const next = era === 'current' ? '1960' : 'current'
     setEra(next)
-    setHistoricalCountry(null)
     closePanel()
   }
 
@@ -52,7 +56,7 @@ function Shell({ countries }: { countries: Country[] }) {
           <div className="globe-canvas-wrap">
             <GlobeWrapper
               countries={countries}
-              onSelectCountry={c => { setHistoricalCountry(null); openCountry(c) }}
+              onSelectCountry={openCountry}
               onSelectHistorical={handleSelectHistorical}
               theme={tweakState.theme}
               rotationSpeed={tweakState.rotationSpeed}
@@ -91,14 +95,13 @@ function Shell({ countries }: { countries: Country[] }) {
           </div>
 
           <CountryPanel
-            country={era === 'current' ? selected : (panelOpen ? selected : null)}
-            historicalCountry={historicalCountry}
-            open={panelOpen || !!historicalCountry}
-            onClose={() => { closePanel(); setHistoricalCountry(null) }}
-            onSelectIso={pickIso}
+            country={selected}
+            open={panelOpen}
+            onClose={closePanel}
+            onSelectIso={handlePickIso}
             t={t}
             lang={lang}
-            countries={countries}
+            countries={ALL_COUNTRIES_COMBINED(countries)}
           />
         </div>
 

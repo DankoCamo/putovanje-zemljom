@@ -1,4 +1,4 @@
-import type { MultiLang } from '@/lib/types'
+import type { Country } from '@/lib/types'
 
 // Maps NAME field from the 1960 TopoJSON to a 2-letter code
 export const NAME_TO_ISO_1960: Record<string, string> = {
@@ -47,32 +47,39 @@ export const NAME_TO_ISO_1960: Record<string, string> = {
   'Zaire': 'CD', 'Zambia': 'ZM', 'Zimbabwe': 'ZW',
 }
 
-export interface HistoricalCountry {
-  iso: string
-  name: MultiLang
-  capital: MultiLang
-  population: number
-  area: number
-  dissolved?: MultiLang
-}
-
-// Countries that existed in 1960 but don't exist today
-export const HISTORICAL_COUNTRIES_1960: HistoricalCountry[] = [
+// Countries that existed in 1960 but don't exist today — fully implements Country interface
+export const HISTORICAL_COUNTRIES_1960: Country[] = [
   {
     iso: 'SU',
-    name: { hr: 'Savez Sovjetskih Socijalističkih Republika (SSSR)', en: 'Soviet Union (USSR)', de: 'Sowjetunion (UdSSR)' },
+    name: { hr: 'SSSR', en: 'Soviet Union (USSR)', de: 'Sowjetunion (UdSSR)' },
     capital: { hr: 'Moskva', en: 'Moscow', de: 'Moskau' },
     population: 214_300_000,
     area: 22_402_200,
-    dissolved: { hr: 'Raspao se 1991.', en: 'Dissolved in 1991.', de: 'Aufgelöst 1991.' },
+    languages: ['Русский', 'Ukrainski', 'Uzbek', 'Beloruski'],
+    currency: 'SUR',
+    continent: 'Europe',
+    lat: 60.0,
+    lng: 100.0,
+    neighbors: ['NO', 'FI', 'PL', 'CS', 'HU', 'RO', 'TR', 'IR', 'AF', 'CN', 'MN', 'KP'],
+    tags: ['largest'],
+    fact: { hr: 'Zauzimao je jednu šestinu Zemljine kopnene površine.', en: 'Covered one-sixth of Earth\'s land surface.', de: 'Bedeckte ein Sechstel der Erdoberfläche.' },
+    dissolved: { hr: 'Raspao se 1991. na 15 neovisnih država.', en: 'Dissolved in 1991 into 15 independent states.', de: 'Löste sich 1991 in 15 unabhängige Staaten auf.' },
   },
   {
     iso: 'YU',
-    name: { hr: 'Socijalistička Federativna Republika Jugoslavija', en: 'Socialist Federal Republic of Yugoslavia', de: 'Sozialistische Föderative Republik Jugoslawien' },
+    name: { hr: 'Jugoslavija', en: 'Yugoslavia', de: 'Jugoslawien' },
     capital: { hr: 'Beograd', en: 'Belgrade', de: 'Belgrad' },
     population: 18_400_000,
     area: 255_804,
-    dissolved: { hr: 'Raspala se 1991.–1992.', en: 'Dissolved 1991–1992.', de: 'Aufgelöst 1991–1992.' },
+    languages: ['Srpskohrvatski', 'Slovenački', 'Makedonski'],
+    currency: 'YUD',
+    continent: 'Europe',
+    lat: 44.0,
+    lng: 20.5,
+    neighbors: ['IT', 'AT', 'HU', 'RO', 'BG', 'GR', 'AL'],
+    tags: [],
+    fact: { hr: 'Jedina socijalistička zemlja izvan Varšavskog pakta.', en: 'The only socialist country outside the Warsaw Pact.', de: 'Das einzige sozialistische Land außerhalb des Warschauer Pakts.' },
+    dissolved: { hr: 'Raspala se 1991.–1992. na šest neovisnih država.', en: 'Dissolved 1991–1992 into six independent states.', de: 'Zerfiel 1991–1992 in sechs unabhängige Staaten.' },
   },
   {
     iso: 'CS',
@@ -80,15 +87,31 @@ export const HISTORICAL_COUNTRIES_1960: HistoricalCountry[] = [
     capital: { hr: 'Prag', en: 'Prague', de: 'Prag' },
     population: 13_700_000,
     area: 127_900,
-    dissolved: { hr: 'Mirno se podijelila 1993.', en: 'Peacefully split in 1993.', de: 'Friedlich geteilt 1993.' },
+    languages: ['Češki', 'Slovački'],
+    currency: 'CSK',
+    continent: 'Europe',
+    lat: 49.8,
+    lng: 15.5,
+    neighbors: ['DE', 'DD', 'PL', 'SU', 'AT', 'HU'],
+    tags: ['landlocked'],
+    fact: { hr: 'Jedina komunistička zemlja koja se raspala potpuno mirnim putem.', en: 'The only communist country that dissolved entirely peacefully.', de: 'Das einzige kommunistische Land, das sich vollständig friedlich auflöste.' },
+    dissolved: { hr: 'Mirno se podijelila 1. siječnja 1993. na Češku i Slovačku.', en: 'Peacefully split on 1 January 1993 into the Czech Republic and Slovakia.', de: 'Teilte sich am 1. Januar 1993 friedlich in die Tschechische Republik und die Slowakei.' },
   },
   {
     iso: 'DD',
-    name: { hr: 'Njemačka Demokratska Republika (DDR)', en: 'German Democratic Republic (GDR)', de: 'Deutsche Demokratische Republik (DDR)' },
+    name: { hr: 'Istočna Njemačka (DDR)', en: 'East Germany (GDR)', de: 'Deutsche Demokratische Republik (DDR)' },
     capital: { hr: 'Istočni Berlin', en: 'East Berlin', de: 'Ostberlin' },
     population: 17_188_000,
     area: 108_333,
-    dissolved: { hr: 'Ujedinila se sa ZNj 1990.', en: 'Reunified with West Germany in 1990.', de: 'Wiedervereinigung mit Westdeutschland 1990.' },
+    languages: ['Njemački'],
+    currency: 'DDM',
+    continent: 'Europe',
+    lat: 52.0,
+    lng: 12.5,
+    neighbors: ['DE', 'PL', 'CS'],
+    tags: [],
+    fact: { hr: 'Berlinski zid (1961.–1989.) bio je simbol Hladnog rata.', en: 'The Berlin Wall (1961–1989) was the symbol of the Cold War.', de: 'Die Berliner Mauer (1961–1989) war das Symbol des Kalten Krieges.' },
+    dissolved: { hr: 'Ujedinila se s Njemačkom 3. listopada 1990.', en: 'Reunified with Germany on 3 October 1990.', de: 'Vereinigte sich am 3. Oktober 1990 mit Deutschland.' },
   },
   {
     iso: 'TB',
@@ -96,6 +119,17 @@ export const HISTORICAL_COUNTRIES_1960: HistoricalCountry[] = [
     capital: { hr: 'Lhasa', en: 'Lhasa', de: 'Lhasa' },
     population: 1_270_000,
     area: 1_228_400,
-    dissolved: { hr: 'Anektiran od Kine 1950.–1951.', en: 'Annexed by China 1950–1951.', de: 'Von China annektiert 1950–1951.' },
+    languages: ['Tibetanski'],
+    currency: '—',
+    continent: 'Asia',
+    lat: 31.7,
+    lng: 88.1,
+    neighbors: ['CN', 'IN', 'NP', 'BT', 'MM'],
+    tags: ['landlocked'],
+    fact: { hr: 'Tibetanska visoravan je "Krov svijeta" — prosj. visina 4.500 m.', en: 'The Tibetan Plateau is the "Roof of the World" — avg. elevation 4,500 m.', de: 'Das Tibetische Plateau ist das "Dach der Welt" – Durchschnittshöhe 4.500 m.' },
+    dissolved: { hr: 'Anektiran od Narodne Oslobodilačke Armije Kine 1950.–1951.', en: 'Annexed by China\'s People\'s Liberation Army in 1950–1951.', de: 'Von der Volksbefreiungsarmee Chinas 1950–1951 annektiert.' },
   },
 ]
+
+// Keep for backward compatibility in AppShell
+export type HistoricalCountry = Country
