@@ -928,7 +928,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   AO: [
     {hr:'Angola ima neka od najvećih nalazišta dijamanata na Zemlji.',en:'Angola has some of the world\'s richest diamond deposits.',de:'Angola hat einige der reichsten Diamantenvorkommen der Welt.'},
     {hr:'Građanski rat trajao je 27 godina (1975–2002).',en:'The civil war lasted 27 years (1975–2002).',de:'Der Bürgerkrieg dauerte 27 Jahre (1975–2002).'},
-    {hr:'Luanda je bila jednom najskuplji grad za expate na Zemlji.',en:'Luanda was once the world\'s most expensive city for expatriates.',de:'Luanda war einst die teuerste Stadt der Welt für Expatriates.'},
+    {hr:'Luanda je bila jednom najskuplji grad za strance na Zemlji.',en:'Luanda was once the world\'s most expensive city for foreign workers.',de:'Luanda war einst die teuerste Stadt der Welt für ausländische Arbeitnehmer.'},
     {hr:'Angola je jedna od najbrže rastućih ekonomija Afrike (nafta).',en:'Angola is one of Africa\'s fastest-growing economies (oil-based).',de:'Angola ist eine der am schnellsten wachsenden Volkswirtschaften Afrikas (Ölbasis).'},
     {hr:'Welwitschia — drevna biljka koja može živjeti 2.000+ godina — raste u Angoli.',en:'Welwitschia — an ancient plant that can live 2,000+ years — grows in Angola.',de:'Welwitschia – eine uralte Pflanze, die 2.000+ Jahre leben kann – wächst in Angola.'},
   ],
