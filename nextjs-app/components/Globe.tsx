@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Country } from '@/lib/types'
 import { CAPS } from '@/data/capitals'
+import { NAME_TO_ISO_1960 } from '@/data/countries-1960'
+import type { Era } from '@/context/AppContext'
 
 interface TooltipState {
   name: { hr: string; en: string; de: string }
@@ -21,6 +23,9 @@ declare global {
     COUNTRY_GEO?: Record<string, GeoGeometry>
     COUNTRY_BORDER_LINES?: number[][][]
     GEO_READY?: boolean
+    COUNTRY_GEO_1960?: Record<string, GeoGeometry>
+    COUNTRY_BORDER_LINES_1960?: number[][][]
+    GEO_1960_READY?: boolean
   }
 }
 
@@ -176,18 +181,104 @@ function findCountryAtLatLng(lat: number, lng: number, countries: Country[]): Co
   return null
 }
 
+function decodeTopoJSON1960(topo: any): void {
+  const arcs = topo.arcs
+  const transform = topo.transform
+  function decodeArc(i: number): number[][] {
+    const rev = i < 0
+    const arc = arcs[rev ? ~i : i].map((p: number[]) => p.slice())
+    if (transform) {
+      let x = 0, y = 0
+      for (let j = 0; j < arc.length; j++) {
+        x += arc[j][0]; y += arc[j][1]
+        arc[j][0] = x * transform.scale[0] + transform.translate[0]
+        arc[j][1] = y * transform.scale[1] + transform.translate[1]
+      }
+    }
+    return rev ? arc.reverse() : arc
+  }
+  function buildRing(arcIndices: number[]): number[][] {
+    const ring: number[][] = []
+    arcIndices.forEach((ai: number, idx: number) => {
+      const arc = decodeArc(ai)
+      if (idx > 0) arc.shift()
+      ring.push(...arc)
+    })
+    return ring
+  }
+  function buildPoly(arcs2: number[][]): number[][][] { return arcs2.map(buildRing) }
+
+  const geo: Record<string, GeoGeometry> = {}
+  const lines: number[][][] = []
+  const objKey = Object.keys(topo.objects)[0]
+  const o = topo.objects[objKey]
+  if (!o) return
+
+  o.geometries.forEach((g: any) => {
+    const name = g.properties?.NAME
+    const iso2 = name ? NAME_TO_ISO_1960[name] : null
+    if (!iso2) return
+    let coords: any
+    if (g.type === 'Polygon') coords = buildPoly(g.arcs)
+    else if (g.type === 'MultiPolygon') coords = g.arcs.map(buildPoly)
+    if (!coords) return
+    if (!geo[iso2]) {
+      geo[iso2] = { type: g.type, coordinates: coords }
+    } else {
+      // Merge duplicate polygons (e.g. US territories, Italy)
+      const existing = geo[iso2]
+      const existingPolys = existing.type === 'Polygon' ? [existing.coordinates] : existing.coordinates
+      const newPolys = g.type === 'Polygon' ? [coords] : coords
+      geo[iso2] = { type: 'MultiPolygon', coordinates: [...existingPolys, ...newPolys] as any }
+    }
+  })
+
+  function addRings(geom: GeoGeometry) {
+    if (geom.type === 'Polygon') geom.coordinates.forEach((r: any) => lines.push(r))
+    else geom.coordinates.forEach((poly: any) => poly.forEach((r: any) => lines.push(r)))
+  }
+  Object.values(geo).forEach(addRings)
+
+  window.COUNTRY_GEO_1960 = geo
+  window.COUNTRY_BORDER_LINES_1960 = lines
+  window.GEO_1960_READY = true
+  window.dispatchEvent(new Event('geo-1960-ready'))
+}
+
+function findCountryAtLatLng1960(lat: number, lng: number, countries: Country[]): { country: Country | null; iso: string } | null {
+  const geo = window.COUNTRY_GEO_1960
+  if (!geo) return null
+  for (const [iso, geom] of Object.entries(geo)) {
+    let hit = false
+    if (geom.type === 'Polygon') {
+      hit = pointInRing(lng, lat, geom.coordinates[0] as unknown as number[][])
+    } else {
+      hit = (geom.coordinates as unknown as number[][][][][]).some(
+        poly => pointInRing(lng, lat, poly[0] as unknown as number[][])
+      )
+    }
+    if (hit) {
+      const country = countries.find(c => c.iso === iso) || null
+      return { country, iso }
+    }
+  }
+  return null
+}
+
 interface Props {
   countries: Country[]
   onSelectCountry: (c: Country) => void
+  onSelectHistorical: (iso: string) => void
   theme: 'light' | 'dark'
   rotationSpeed: number
   showCapitals: boolean
   showBorders: boolean
   focusIso: string | null
   lang: 'hr' | 'en' | 'de'
+  era: Era
 }
 
-export default function Globe({ countries, onSelectCountry, theme, rotationSpeed, showCapitals, showBorders, focusIso, lang }: Props) {
+export default function Globe({ countries, onSelectCountry, onSelectHistorical, theme, rotationSpeed, showCapitals, showBorders, focusIso, lang, era }: Props) {
   const mountRef = useRef<HTMLDivElement>(null)
   const stateRef = useRef<any>({})
   const [tooltip, setTooltip] = useState<TooltipState | null>(null)
@@ -275,7 +366,7 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
         ;(c.material as THREE.Material)?.dispose()
         bordersGroup.remove(c)
       }
-      const lines = window.COUNTRY_BORDER_LINES || []
+      const lines = (stateRef.current.era === '1960' ? window.COUNTRY_BORDER_LINES_1960 : window.COUNTRY_BORDER_LINES) || []
       if (!lines.length) return
       const isDark = stateRef.current.theme === 'dark'
       const mat = new THREE.LineBasicMaterial({ color: isDark ? 0xffee88 : 0xffffff, transparent: true, opacity: 0.95, depthWrite: false })
@@ -309,8 +400,9 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
         highlightGroup.remove(c)
       }
       highlightMats.length = 0
-      if (!iso || !window.COUNTRY_GEO) return
-      const geom = window.COUNTRY_GEO[iso]
+      const geoSource = stateRef.current.era === '1960' ? window.COUNTRY_GEO_1960 : window.COUNTRY_GEO
+      if (!iso || !geoSource) return
+      const geom = geoSource[iso]
       if (!geom) return
       const rings: number[][][] = []
       if (geom.type === 'Polygon') (geom.coordinates as any).forEach((r: any) => rings.push(r))
@@ -375,17 +467,18 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
         const my = -((p.clientY - rect.top) / rect.height) * 2 + 1
         const raycaster = new THREE.Raycaster()
         raycaster.setFromCamera(new THREE.Vector2(mx, my), camera)
-        const hits = raycaster.intersectObjects(pinsGroup.children)
-        const visHits = hits.filter(h => h.object.visible)
-        if (visHits.length && visHits[0].object.userData.country) {
-          const c = visHits[0].object.userData.country
-          const l = stateRef.current.lang || 'hr'
-          setTooltip({ name: c.name, capital: c.capital, x: p.clientX - rect.left, y: p.clientY - rect.top })
-          renderer.domElement.style.cursor = 'pointer'
-          return
+        if (stateRef.current.era !== '1960') {
+          const hits = raycaster.intersectObjects(pinsGroup.children)
+          const visHits = hits.filter(h => h.object.visible)
+          if (visHits.length && visHits[0].object.userData.country) {
+            const c = visHits[0].object.userData.country
+            setTooltip({ name: c.name, capital: c.capital, x: p.clientX - rect.left, y: p.clientY - rect.top })
+            renderer.domElement.style.cursor = 'pointer'
+            return
+          }
         }
         setTooltip(null)
-        renderer.domElement.style.cursor = 'grab'
+        renderer.domElement.style.cursor = stateRef.current.era === '1960' ? 'crosshair' : 'grab'
       }
     }
     function onUp() { isDragging = false }
@@ -397,22 +490,33 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
       const my = -((p.clientY - rect.top) / rect.height) * 2 + 1
       const raycaster = new THREE.Raycaster()
       raycaster.setFromCamera(new THREE.Vector2(mx, my), camera)
+      const currentEra = stateRef.current.era || 'current'
 
-      // First try pins
-      const pinHits = raycaster.intersectObjects(pinsGroup.children).filter(h => h.object.visible)
-      if (pinHits.length && pinHits[0].object.userData.country) {
-        stateRef.current.onSelectCountry?.(pinHits[0].object.userData.country)
-        return
+      // Pins only in current mode
+      if (currentEra === 'current') {
+        const pinHits = raycaster.intersectObjects(pinsGroup.children).filter(h => h.object.visible)
+        if (pinHits.length && pinHits[0].object.userData.country) {
+          stateRef.current.onSelectCountry?.(pinHits[0].object.userData.country)
+          return
+        }
       }
 
-      // Fall back to earth surface click → point-in-polygon
+      // Earth surface click → point-in-polygon
       const earthHits = raycaster.intersectObject(earthMesh)
       if (earthHits.length) {
         const worldPt = earthHits[0].point
         const localPt = earthGroup.worldToLocal(worldPt.clone())
         const [lat, lng] = vec3ToLatLng(localPt)
-        const found = findCountryAtLatLng(lat, lng, countries)
-        if (found) stateRef.current.onSelectCountry?.(found)
+        if (currentEra === '1960') {
+          const result = findCountryAtLatLng1960(lat, lng, countries)
+          if (result) {
+            if (result.country) stateRef.current.onSelectCountry?.(result.country)
+            else stateRef.current.onSelectHistorical?.(result.iso)
+          }
+        } else {
+          const found = findCountryAtLatLng(lat, lng, countries)
+          if (found) stateRef.current.onSelectCountry?.(found)
+        }
       }
     }
     function onWheel(e: WheelEvent) {
@@ -464,6 +568,7 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
       bordersGroup, buildBorders,
       highlightGroup, buildHighlight,
       onSelectCountry,
+      onSelectHistorical,
       focusOn: (iso: string) => {
         const c = countries.find(x => x.iso === iso)
         if (!c) return
@@ -509,7 +614,28 @@ export default function Globe({ countries, onSelectCountry, theme, rotationSpeed
   useEffect(() => { stateRef.current.showCapitals = showCapitals }, [showCapitals])
   useEffect(() => { stateRef.current.showBorders = showBorders }, [showBorders])
   useEffect(() => { stateRef.current.onSelectCountry = onSelectCountry }, [onSelectCountry])
+  useEffect(() => { stateRef.current.onSelectHistorical = onSelectHistorical }, [onSelectHistorical])
   useEffect(() => { stateRef.current.lang = lang }, [lang])
+  useEffect(() => {
+    stateRef.current.era = era
+    if (era === '1960') {
+      if (!window.GEO_1960_READY) {
+        fetch('/countries-1960.json')
+          .then(r => r.json())
+          .then(topo => {
+            decodeTopoJSON1960(topo)
+            if (stateRef.current.buildBorders) stateRef.current.buildBorders()
+            if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(null)
+          })
+      } else {
+        if (stateRef.current.buildBorders) stateRef.current.buildBorders()
+        if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(null)
+      }
+    } else {
+      if (stateRef.current.buildBorders) stateRef.current.buildBorders()
+      if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(stateRef.current.selectedIso || null)
+    }
+  }, [era])
   useEffect(() => {
     stateRef.current.theme = theme
     if (stateRef.current.loadTex) stateRef.current.loadTex(theme === 'dark')

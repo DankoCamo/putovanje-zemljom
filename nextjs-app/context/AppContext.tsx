@@ -4,6 +4,8 @@ import { Country, TweakState, Lang } from '@/lib/types'
 
 type View = 'globe' | 'atlas' | 'compare' | 'quiz' | 'top10'
 
+export type Era = 'current' | '1960'
+
 interface AppContextValue {
   view: View
   setView: (v: View) => void
@@ -20,6 +22,8 @@ interface AppContextValue {
   introSeen: boolean
   dismissIntro: () => void
   lang: Lang
+  era: Era
+  setEra: (e: Era) => void
 }
 
 const DEFAULTS: TweakState = {
@@ -42,6 +46,7 @@ export function AppProvider({ children, countries }: { children: ReactNode; coun
   const [tweakState, setTweakState] = useState<TweakState>(DEFAULTS)
   const [showTweaks, setShowTweaks] = useState(false)
   const [introSeen, setIntroSeen] = useState(false)
+  const [era, setEra] = useState<Era>('current')
 
   const lang = tweakState.language
 
@@ -97,6 +102,7 @@ export function AppProvider({ children, countries }: { children: ReactNode; coun
       showTweaks, setShowTweaks,
       introSeen, dismissIntro,
       lang,
+      era, setEra,
     }}>
       {children}
     </AppContext.Provider>

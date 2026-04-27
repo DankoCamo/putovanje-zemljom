@@ -4,9 +4,11 @@ import { CONTINENTS } from '@/data/continents'
 import { CITIES } from '@/data/cities'
 import { COUNTRY_FACTS } from '@/data/country-facts'
 import { flagUrl, flagUrlSmall, fmtPop, fmtArea, formatCurrency } from '@/lib/utils'
+import type { HistoricalCountry } from '@/data/countries-1960'
 
 interface Props {
   country: Country | null
+  historicalCountry?: HistoricalCountry | null
   open: boolean
   onClose: () => void
   onSelectIso: (iso: string) => void
@@ -15,7 +17,44 @@ interface Props {
   countries: Country[]
 }
 
-export default function CountryPanel({ country, open, onClose, onSelectIso, t, lang, countries }: Props) {
+export default function CountryPanel({ country, historicalCountry, open, onClose, onSelectIso, t, lang, countries }: Props) {
+  if (historicalCountry && !country) {
+    return (
+      <aside className={'country-panel' + (open ? ' open' : '')}>
+        <div className="cp-header">
+          <div className="cp-title" style={{ flex: 1 }}>
+            <h2>{historicalCountry.name[lang]}</h2>
+            <div className="cp-continent">🕰️ 1960</div>
+          </div>
+          <button className="cp-close" onClick={onClose} aria-label="close">×</button>
+        </div>
+        <div className="cp-body">
+          <div className="cp-grid">
+            <div className="cp-tile wide">
+              <div className="cp-tile-label">{t.fields.capital}</div>
+              <div className="cp-tile-value">📍 {historicalCountry.capital[lang]}</div>
+            </div>
+            <div className="cp-tile">
+              <div className="cp-tile-label">{t.fields.population}</div>
+              <div className="cp-tile-value">{fmtPop(historicalCountry.population)}</div>
+            </div>
+            <div className="cp-tile">
+              <div className="cp-tile-label">{t.fields.area}</div>
+              <div className="cp-tile-value">{fmtArea(historicalCountry.area)} {t.fields.km2}</div>
+            </div>
+          </div>
+          {historicalCountry.dissolved && (
+            <div className="cp-fact" style={{ marginTop: 12 }}>
+              <div style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>
+                📖 {historicalCountry.dissolved[lang]}
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
+    )
+  }
+
   if (!country) return <div className="country-panel" />
 
   const neighbors = (country.neighbors || [])

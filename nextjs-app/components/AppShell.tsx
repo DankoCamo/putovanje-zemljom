@@ -1,7 +1,9 @@
 'use client'
+import { useState } from 'react'
 import { AppProvider, useApp } from '@/context/AppContext'
 import { Country } from '@/lib/types'
 import { I18N } from '@/data/i18n'
+import { HISTORICAL_COUNTRIES_1960, type HistoricalCountry } from '@/data/countries-1960'
 import TopBar from './TopBar'
 import TweaksPanel from './TweaksPanel'
 import CountryPanel from './CountryPanel'
@@ -20,9 +22,25 @@ function Shell({ countries }: { countries: Country[] }) {
     showTweaks,
     introSeen, dismissIntro,
     lang,
+    era, setEra,
   } = useApp()
 
+  const [historicalCountry, setHistoricalCountry] = useState<HistoricalCountry | null>(null)
+
   const t = I18N[lang]
+
+  function handleSelectHistorical(iso: string) {
+    const hc = HISTORICAL_COUNTRIES_1960.find(h => h.iso === iso) || null
+    setHistoricalCountry(hc)
+    closePanel()
+  }
+
+  function handleEraToggle() {
+    const next = era === 'current' ? '1960' : 'current'
+    setEra(next)
+    setHistoricalCountry(null)
+    closePanel()
+  }
 
   return (
     <div className="app-shell">
@@ -34,14 +52,24 @@ function Shell({ countries }: { countries: Country[] }) {
           <div className="globe-canvas-wrap">
             <GlobeWrapper
               countries={countries}
-              onSelectCountry={openCountry}
+              onSelectCountry={c => { setHistoricalCountry(null); openCountry(c) }}
+              onSelectHistorical={handleSelectHistorical}
               theme={tweakState.theme}
               rotationSpeed={tweakState.rotationSpeed}
-              showCapitals={tweakState.showCapitals}
+              showCapitals={era === 'current' && tweakState.showCapitals}
               showBorders={tweakState.showBorders}
               focusIso={focusIso}
               lang={lang}
+              era={era}
             />
+
+            <button
+              className={'era-toggle' + (era === '1960' ? ' era-active' : '')}
+              onClick={handleEraToggle}
+              title={era === '1960' ? 'Prikaži današnje granice' : 'Prikaži granice Hladnog rata (1960)'}
+            >
+              {era === '1960' ? '🌍 Danas' : '🕰️ Hladni rat'}
+            </button>
 
             {!introSeen && (
               <div className="intro-overlay" onClick={dismissIntro}>
@@ -63,9 +91,10 @@ function Shell({ countries }: { countries: Country[] }) {
           </div>
 
           <CountryPanel
-            country={selected}
-            open={panelOpen}
-            onClose={closePanel}
+            country={era === 'current' ? selected : (panelOpen ? selected : null)}
+            historicalCountry={historicalCountry}
+            open={panelOpen || !!historicalCountry}
+            onClose={() => { closePanel(); setHistoricalCountry(null) }}
             onSelectIso={pickIso}
             t={t}
             lang={lang}
