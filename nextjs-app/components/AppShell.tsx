@@ -60,7 +60,7 @@ function Shell({ countries }: { countries: Country[] }) {
               onSelectHistorical={handleSelectHistorical}
               theme={tweakState.theme}
               rotationSpeed={tweakState.rotationSpeed}
-              showCapitals={era === 'current' && tweakState.showCapitals}
+              showCapitals={tweakState.showCapitals}
               showBorders={tweakState.showBorders}
               focusIso={focusIso}
               lang={lang}
@@ -72,7 +72,7 @@ function Shell({ countries }: { countries: Country[] }) {
               onClick={handleEraToggle}
               title={era === '1960' ? 'Prikaži današnje granice' : 'Prikaži granice Hladnog rata (1960)'}
             >
-              {era === '1960' ? '🌍 Danas' : '🕰️ Hladni rat'}
+              {era === '1960' ? '🌍 Danas' : '🕰️ Hladni rat 1960.'}
             </button>
 
             {!introSeen && (
