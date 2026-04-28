@@ -657,7 +657,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   KP: [
     {hr:'Sjeverna Koreja je najizoliranije i najtajnovitije kraljevstvo na Zemlji.',en:'North Korea is the world\'s most isolated and secretive state.',de:'Nordkorea ist der isolierteste und geheimnisvollste Staat der Welt.'},
-    {hr:'Ima najveći stadion na Zemlji s kapacitetom od 114.000 mjesta.',en:'Has the world\'s largest stadium with a capacity of 114,000 seats.',de:'Hat das größte Stadion der Welt mit einer Kapazität von 114.000 Plätzen.'},
+    {hr:'Ima jedan od najvećih stadiona na Zemlji s kapacitetom od 114.000 mjesta.',en:'Has one of the world\'s largest stadiums with a capacity of 114,000 seats.',de:'Hat eines der größten Stadien der Welt mit einer Kapazität von 114.000 Plätzen.'},
     {hr:'Službeni kalendar ove države počinje od 1912. (godine 1) — godišta svog osnivača.',en:'This country\'s official calendar starts from 1912 (Year 1) — the birth year of its founding leader.',de:'Der offizielle Kalender dieses Landes beginnt ab 1912 (Jahr 1) – dem Geburtsjahr seines Staatsgründers.'},
     {hr:'Noću je ova država potpuno tamna na satelitskim snimkama zbog nestašice električne energije.',en:'At night this country appears completely dark in satellite images due to electricity shortages.',de:'Nachts erscheint dieses Land auf Satellitenbildern vollständig dunkel, wegen Strommangels.'},
     {hr:'Građani smiju birati između samo 28 odobrenih frizura.',en:'Citizens may choose from only 28 approved hairstyles.',de:'Bürger dürfen aus nur 28 genehmigten Frisuren wählen.'},
