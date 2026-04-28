@@ -181,7 +181,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   CY: [
     {hr:'Riječ "bakar" dolazi od latinskog Cuprum — prema Cipru, gdje su Grci vadili bakar.',en:'The word "copper" comes from the Latin Cuprum — named after Cyprus, where Greeks mined it.',de:'Das Wort „Kupfer" kommt vom lateinischen Cuprum – benannt nach Zypern, wo die Griechen es abbauten.'},
-    {hr:'Nikozija je jedina podijeljena glavna zemlja na svijetu — tampon zona UN-a dijeli je od 1974.',en:'Nicosia is the world\'s only divided capital — a UN buffer zone has split it since 1974.',de:'Nikosia ist die einzige geteilte Hauptstadt der Welt – seit 1974 trennt sie eine UN-Pufferzone.'},
+    {hr:'Jedini je podijeljeni glavni grad na svijetu — tampon zona UN-a dijeli ga od 1974.',en:'The world\'s only divided capital city — a UN buffer zone has split it since 1974.',de:'Die einzige geteilte Hauptstadt der Welt – seit 1974 trennt sie eine UN-Pufferzone.'},
     {hr:'Prema grčkoj mitologiji, Afrodita je rođena iz morske pjene uz obalu Cipra.',en:'According to Greek mythology, Aphrodite was born from sea foam off the coast of Cyprus.',de:'Laut griechischer Mythologie wurde Aphrodite aus dem Meeresschaum vor der Küste Zyperns geboren.'},
     {hr:'Cipar je treći po veličini i treći po broju stanovnika otok u Sredozemnom moru.',en:'Cyprus is the third-largest and third-most-populous island in the Mediterranean Sea.',de:'Zypern ist die drittgrößte und drittbevölkerungsreichste Insel im Mittelmeer.'},
     {hr:'Jedina je zemlja EU u kojoj vojska strane države drži okupirani dio teritorija.',en:'It is the only EU member state with part of its territory under foreign military occupation.',de:'Es ist das einzige EU-Mitglied, dessen Territorium teilweise unter ausländischer Militärbesatzung steht.'},
@@ -223,10 +223,10 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   GB: [
     {hr:'London Underground (1863.) najstariji je metro sustav na svijetu.',en:'The London Underground (1863) is the world\'s oldest metro system.',de:'Die Londoner U-Bahn (1863) ist das älteste U-Bahn-System der Welt.'},
-    {hr:'Tim Berners-Lee izumio je World Wide Web u UK 1989.',en:'Tim Berners-Lee invented the World Wide Web in the UK in 1989.',de:'Tim Berners-Lee erfand das World Wide Web 1989 in Großbritannien.'},
-    {hr:'UK je jedna od samo 3 zemlje bez pisanog ustava.',en:'The UK is one of only 3 countries without a written constitution.',de:'Das Vereinigte Königreich ist eines von nur 3 Ländern ohne schriftliche Verfassung.'},
-    {hr:'Kraljica Elizabeta II. bila je najduže vladajući monarh (70 godina, umrla 2022.).',en:'Queen Elizabeth II was the longest-reigning monarch (70 years, died 2022).',de:'Königin Elisabeth II. war die am längsten regierende Monarchin (70 Jahre, gest. 2022).'},
-    {hr:'UK je kolonizirala više od četvrtine zemaljske površine na vrhuncu Imperija.',en:'At its peak the British Empire covered over a quarter of the Earth\'s surface.',de:'Auf dem Höhepunkt bedeckte das Britische Empire mehr als ein Viertel der Erdoberfläche.'},
+    {hr:'Tim Berners-Lee izumio je World Wide Web 1989. u Ženevi, radeći za CERN.',en:'Tim Berners-Lee invented the World Wide Web in 1989 while working at CERN in Geneva.',de:'Tim Berners-Lee erfand das World Wide Web 1989 während seiner Arbeit beim CERN in Genf.'},
+    {hr:'Jedna je od samo 3 države na svijetu koje nemaju pisani ustav.',en:'One of only 3 countries in the world without a written constitution.',de:'Eines von nur 3 Ländern der Welt ohne schriftliche Verfassung.'},
+    {hr:'Kraljica Elizabeta II. bila je najduže vladajući monarh u povijesti — 70 godina na prijestolju.',en:'Queen Elizabeth II was the longest-reigning monarch in history — 70 years on the throne.',de:'Königin Elisabeth II. war die am längsten regierende Monarchin der Geschichte — 70 Jahre auf dem Thron.'},
+    {hr:'Britansko Carstvo na vrhuncu je obuhvaćalo više od četvrtine zemaljske površine.',en:'At its peak the British Empire covered over a quarter of the Earth\'s surface.',de:'Auf dem Höhepunkt umfasste das Britische Empire mehr als ein Viertel der Erdoberfläche.'},
   ],
   IE: [
     {hr:'Halloween potječe od keltskog festivala Samhain iz Irske.',en:'Halloween originates from the Celtic festival of Samhain in Ireland.',de:'Halloween stammt vom keltischen Fest Samhain in Irland.'},

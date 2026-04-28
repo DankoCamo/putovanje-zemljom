@@ -35,11 +35,35 @@ function getPool(countries: Country[], level: Level): Country[] {
 
 function buildQuestions(countries: Country[], level: Level, lang: Lang): TriviaQ[] {
   const pool = getPool(countries, level)
-  const withFacts = shuffle(pool.filter(c => COUNTRY_FACTS[c.iso]?.length))
-  const picked = withFacts.slice(0, TOTAL)
-  return picked.map(country => {
+
+  // Build flat list of (country, fact) pairs, excluding any fact that contains
+  // the country name in any language — those give away the answer immediately.
+  const candidates: { country: Country; fact: string }[] = []
+  for (const country of pool) {
     const facts = COUNTRY_FACTS[country.iso]
-    const fact = facts[Math.floor(Math.random() * facts.length)][lang]
+    if (!facts?.length) continue
+    const names = [
+      country.name.hr.toLowerCase(),
+      country.name.en.toLowerCase(),
+      country.name.de.toLowerCase(),
+    ]
+    for (const f of facts) {
+      const text = f[lang].toLowerCase()
+      if (!names.some(n => text.includes(n))) {
+        candidates.push({ country, fact: f[lang] })
+      }
+    }
+  }
+
+  // Deduplicate by country so no country appears twice in the same quiz
+  const seen = new Set<string>()
+  const unique = shuffle(candidates).filter(({ country }) => {
+    if (seen.has(country.iso)) return false
+    seen.add(country.iso)
+    return true
+  })
+
+  return unique.slice(0, TOTAL).map(({ country, fact }) => {
     const others = shuffle(pool.filter(c => c.iso !== country.iso)).slice(0, 3)
     return { country, fact, options: shuffle([country, ...others]) }
   })
