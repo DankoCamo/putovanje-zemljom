@@ -93,6 +93,7 @@ export interface I18nT {
   fields: Record<string, string>
   compare: Record<string, string>
   quiz: I18nQuiz
+  trivia: Record<string, string>
   tweaks: Record<string, string>
   intro: Record<string, string>
   facts: Record<string, string>

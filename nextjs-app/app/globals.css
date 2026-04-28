@@ -819,6 +819,18 @@ button {
   display: block;
   margin: 12px auto;
 }
+.trivia-fact {
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--surface2);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 14px 0 4px;
+  text-align: left;
+}
 .quiz-shape-svg {
   width: 280px; height: 200px;
   margin: 12px auto;
