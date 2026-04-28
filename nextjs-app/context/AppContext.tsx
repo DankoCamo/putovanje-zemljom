@@ -52,8 +52,9 @@ export function AppProvider({ children, countries }: { children: ReactNode; coun
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      const VALID_VIEWS: View[] = ['globe', 'atlas', 'compare', 'quiz', 'top10']
       const saved = localStorage.getItem('earth-view') as View | null
-      if (saved) setViewState(saved)
+      if (saved && VALID_VIEWS.includes(saved)) setViewState(saved)
       setIntroSeen(localStorage.getItem('intro-seen') === '1')
     }
   }, [])
