@@ -33,13 +33,70 @@ function getPool(countries: Country[], level: Level): Country[] {
   return countries.filter(c => c.continent !== 'Antarctica')
 }
 
+// Extra aliases that the country name/capital check won't catch automatically
+// (irregular adjective stems, abbreviations, demonyms with different roots)
+const EXTRA_STEMS: Record<string, string[]> = {
+  GB: ['britanij', 'britans', 'britanac'],
+  US: ['američ', 'amerik'],
+  RS: ['srpsk', 'srbijanc'],
+  BA: ['bosansk', 'bošnjac', 'bošnjak'],
+  CH: ['švicarsk', 'švicarac'],
+  AU: ['australsk', 'australac'],
+  NZ: ['novozeland'],
+  FR: ['francusk', 'francuz'],
+  DE: ['njemac', 'nijemac'],
+  IT: ['talijanac', 'talijansk'],
+  ES: ['španjolsk', 'španjolac'],
+  PT: ['portugals'],
+  GR: ['grčk'],
+  PL: ['poljsk', 'poljak'],
+  CN: ['kinsk', 'kinez'],
+  JP: ['japansk', 'japanac'],
+  IN: ['indijsk', 'indijac'],
+  BR: ['brazilsk', 'brazilac'],
+  AR: ['argentinsk', 'argentinac'],
+  MX: ['meksičk', 'meksikanac'],
+  ZA: ['južnoafrič'],
+  EG: ['egipatsk', 'egipćan'],
+  NG: ['nigerijsk', 'nigerijac'],
+  KE: ['kenijsk', 'kenijac'],
+  ET: ['etiopsk', 'etiopljani'],
+  MA: ['marokansk', 'marokanac'],
+  TH: ['tajsk', 'tajlanđan'],
+  VN: ['vijetnamsk', 'vijetnamac'],
+  KR: ['korejsk', 'korejac'],
+  SA: ['saudijsk', 'saudijac'],
+  TR: ['tursk', 'turčin'],
+  IR: ['iransk', 'iranac'],
+  RU: ['rusima'],
+}
+
 function containsHint(factText: string, country: Country, lang: Lang): boolean {
   const text = factText.toLowerCase()
+
   const terms = [
     country.name.hr, country.name.en, country.name.de,
     country.capital.hr, country.capital.en, country.capital.de,
   ]
-  return terms.some(t => text.includes(t.toLowerCase()))
+
+  for (const term of terms) {
+    const t = term.toLowerCase()
+    if (text.includes(t)) return true
+    // Stem = name without its last character catches declined forms and adjectives:
+    // "Malta"→"Malt" catches "malteški/Maltu/Malte"
+    // "Norveška"→"Norveš" catches "norveški/Norveškog/Norveškoj"
+    // "Belgija"→"Belgij" catches "belgijski/Belgiji/Belgijanci"
+    // "Danska"→"Dansk" catches "danski/Danske"
+    // "Kijev"→"Kije" catches "Kijevu/Kijeva"
+    const stem = t.slice(0, -1)
+    if (stem.length >= 4 && text.includes(stem)) return true
+  }
+
+  // Check known irregular adjective/demonym stems
+  const extras = EXTRA_STEMS[country.iso] ?? []
+  if (extras.some(e => text.includes(e))) return true
+
+  return false
 }
 
 function buildQuestions(countries: Country[], level: Level, lang: Lang): TriviaQ[] {
