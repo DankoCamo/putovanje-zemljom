@@ -114,7 +114,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Gotthardski bazni tunel (57 km) najdulji je željeznički tunel na svijetu.',en:'The Gotthard Base Tunnel (57 km) is the world\'s longest railway tunnel.',de:'Der Gotthard-Basistunnel (57 km) ist der längste Eisenbahntunnel der Welt.'},
     {hr:'Švicarska je neutralna u međunarodnim sukobima od 1815.',en:'Switzerland has been neutral in international conflicts since 1815.',de:'Die Schweiz ist seit 1815 in internationalen Konflikten neutral.'},
     {hr:'Ima više od 1.500 jezera.',en:'Has over 1,500 lakes.',de:'Hat über 1.500 Seen.'},
-    {hr:'Crveni križ osnovan je u Ženevi 1863.',en:'The Red Cross was founded in Geneva in 1863.',de:'Das Rote Kreuz wurde 1863 in Genf gegründet.'},
+    {hr:'Sjedište Crvenog križa i gotovo svih glavnih UN-ovih agencija je u ovoj zemlji.',en:'The Red Cross headquarters and nearly all major UN agencies are based in this country.',de:'Der Sitz des Roten Kreuzes und fast aller großen UN-Organisationen liegt in diesem Land.'},
   ],
   LI: [
     {hr:'Jedna od samo dvije dvostruko zatvorene (landlocked) države na svijetu.',en:'One of only two doubly landlocked countries in the world.',de:'Eines von nur zwei doppelt binnenländischen Ländern der Welt.'},
@@ -126,7 +126,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   DE: [
     {hr:'Ima 9 susjednih država — najviše u Europi.',en:'Has 9 neighbours — tied for most in Europe.',de:'Hat 9 Nachbarländer – Rekord in Europa.'},
     {hr:'Nijemci su izumili auto (Benz, 1885.), aspirin, MP3 i rendgenske zrake.',en:'Germans invented the car (Benz, 1885), aspirin, the MP3, and X-rays.',de:'Deutsche erfanden das Auto (Benz, 1885), Aspirin, die MP3 und Röntgenstrahlen.'},
-    {hr:'Autobahn nema opće ograničenje brzine na 30% dionica.',en:'The Autobahn has no general speed limit on 30% of its sections.',de:'Die Autobahn hat auf 30% ihrer Abschnitte kein allgemeines Tempolimit.'},
+    {hr:'Na autocestama ove zemlje nema općeg ograničenja brzine na otprilike trećini dionica.',en:'This country\'s motorways have no general speed limit on roughly a third of their sections.',de:'Die Autobahnen dieses Landes haben auf etwa einem Drittel der Abschnitte kein allgemeines Tempolimit.'},
     {hr:'Ima više od 1.300 pivovara i 300 vrsta kruha.',en:'Has over 1,300 breweries and 300 types of bread.',de:'Hat über 1.300 Brauereien und 300 Brotsorten.'},
     {hr:'Božićno drvce (Tannenbaum) potječe iz Njemačke iz 16. stoljeća.',en:'The Christmas tree tradition originates from Germany in the 16th century.',de:'Der Weihnachtsbaum stammt aus Deutschland des 16. Jahrhunderts.'},
   ],
@@ -223,7 +223,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   GB: [
     {hr:'London Underground (1863.) najstariji je metro sustav na svijetu.',en:'The London Underground (1863) is the world\'s oldest metro system.',de:'Die Londoner U-Bahn (1863) ist das älteste U-Bahn-System der Welt.'},
-    {hr:'Tim Berners-Lee izumio je World Wide Web 1989. u Ženevi, radeći za CERN.',en:'Tim Berners-Lee invented the World Wide Web in 1989 while working at CERN in Geneva.',de:'Tim Berners-Lee erfand das World Wide Web 1989 während seiner Arbeit beim CERN in Genf.'},
+    {hr:'Tim Berners-Lee izumio je World Wide Web 1989. radeći za CERN.',en:'Tim Berners-Lee invented the World Wide Web in 1989 while working at CERN.',de:'Tim Berners-Lee erfand das World Wide Web 1989 während seiner Arbeit beim CERN.'},
     {hr:'Jedna je od samo 3 države na svijetu koje nemaju pisani ustav.',en:'One of only 3 countries in the world without a written constitution.',de:'Eines von nur 3 Ländern der Welt ohne schriftliche Verfassung.'},
     {hr:'Kraljica Elizabeta II. bila je najduže vladajući monarh u povijesti — 70 godina na prijestolju.',en:'Queen Elizabeth II was the longest-reigning monarch in history — 70 years on the throne.',de:'Königin Elisabeth II. war die am längsten regierende Monarchin der Geschichte — 70 Jahre auf dem Thron.'},
     {hr:'Britansko Carstvo na vrhuncu je obuhvaćalo više od četvrtine zemaljske površine.',en:'At its peak the British Empire covered over a quarter of the Earth\'s surface.',de:'Auf dem Höhepunkt umfasste das Britische Empire mehr als ein Viertel der Erdoberfläche.'},
@@ -314,8 +314,8 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   BY: [
     {hr:'Bjelorusija je posljednja zemlja u Europi koja još provodi smrtnu kaznu.',en:'Belarus is the last country in Europe to still carry out the death penalty.',de:'Belarus ist das letzte Land in Europa, das noch die Todesstrafe vollstreckt.'},
-    {hr:'Više od 25% bjeloruskog stanovništva poginulo je u II. svjetskom ratu.',en:'More than 25% of Belarus\'s population died in World War II.',de:'Mehr als 25% der Bevölkerung Weißrusslands starb im Zweiten Weltkrieg.'},
-    {hr:'Černobilska katastrofa (1986) kontaminirala je 20% bjeloruskog teritorija.',en:'The Chernobyl disaster (1986) contaminated 20% of Belarus\'s territory.',de:'Die Tschernobyl-Katastrophe (1986) verseuchte 20% des weißrussischen Territoriums.'},
+    {hr:'Više od 25% stanovništva ove države poginulo je u Drugom svjetskom ratu — jedan od najvećih omjera na svijetu.',en:'More than 25% of this country\'s population died in World War II — one of the highest ratios in the world.',de:'Mehr als 25% der Bevölkerung dieses Landes starb im Zweiten Weltkrieg – eine der höchsten Raten weltweit.'},
+    {hr:'Černobilska katastrofa (1986) kontaminirala je oko 20% teritorija ove države.',en:'The Chernobyl disaster (1986) contaminated about 20% of this country\'s territory.',de:'Die Tschernobyl-Katastrophe (1986) verseuchte etwa 20% des Territoriums dieses Landes.'},
     {hr:'Beloveška šuma je najveća stara šuma na europskom kontinentu.',en:'Białowieża Forest is the largest primeval forest on the European continent.',de:'Der Białowieża-Wald ist der größte Urwald auf dem europäischen Kontinent.'},
     {hr:'Lukašenko je na vlasti od 1994. — najdulje vladajući europski lider.',en:'Lukashenko has been in power since 1994 — Europe\'s longest-serving leader.',de:'Lukaschenko ist seit 1994 an der Macht – Europas am längsten dienender Anführer.'},
   ],
@@ -1150,7 +1150,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Najposjećenija je karipska zemlja.',en:'It is the Caribbean\'s most visited country.',de:'Es ist das meistbesuchte Land der Karibik.'},
     {hr:'Bachata glazba potječe iz DR.',en:'Bachata music originates from the Dominican Republic.',de:'Bachata-Musik stammt aus der Dominikanischen Republik.'},
     {hr:'La Navidad (1492) je najstarije europsko naselje u Americi.',en:'La Navidad (1492) is the oldest European settlement in the Americas.',de:'La Navidad (1492) ist die älteste europäische Siedlung in Amerika.'},
-    {hr:'DR je dala više igrača MLB-a po glavi nego bilo koja druga zemlja.',en:'The DR has produced more MLB players per capita than any other country.',de:'Die DR hat pro Kopf mehr MLB-Spieler hervorgebracht als jedes andere Land.'},
+    {hr:'Dala je više igrača MLB-a po glavi stanovnika nego bilo koja druga zemlja na svijetu.',en:'Produces more MLB players per capita than any other country in the world.',de:'Bringt pro Kopf mehr MLB-Spieler hervor als jedes andere Land der Welt.'},
   ],
   BS: [
     {hr:'Bahami imaju jednu od najčišćih oceana na Zemlji.',en:'The Bahamas has some of the world\'s clearest ocean water.',de:'Die Bahamas hat eines der klarsten Meereswasser der Welt.'},
@@ -1315,10 +1315,10 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   PG: [
     {hr:'Papua Nova Gvineja ima 850+ jezika — 12% svih svjetskih jezika.',en:'Papua New Guinea has 850+ languages — 12% of the world\'s total.',de:'Papua-Neuguinea hat 850+ Sprachen – 12% aller Weltsprachen.'},
-    {hr:'80% PNG-a pokriveno je prašumom.',en:'80% of PNG is covered by rainforest.',de:'80% von PNG sind von Regenwald bedeckt.'},
-    {hr:'Gorja PNG-a imala su tribalne kulture bez kontakta s vanjskim svijetom do 1930-ih.',en:'PNG\'s Highlands had tribal cultures with no outside contact until the 1930s.',de:'PNGs Hochland hatte Stammeskulturen ohne Außenkontakt bis in die 1930er Jahre.'},
-    {hr:'Rajske ptice — najšarenije ptice na Zemlji — žive u PNG-u.',en:'Birds of paradise — the world\'s most colourful birds — live in PNG.',de:'Paradiesvögel – die farbenprächtigsten Vögel der Welt – leben in PNG.'},
-    {hr:'PNG je jedna od zemalja s najvećim brojem smrtnih slučajeva od malarije.',en:'PNG has one of the world\'s highest malaria mortality rates.',de:'PNG hat eine der höchsten Malaria-Sterblichkeitsraten der Welt.'},
+    {hr:'Oko 80% ove pacifičke države pokriveno je neprohodnom prašumom.',en:'Around 80% of this Pacific nation is covered by impenetrable rainforest.',de:'Etwa 80% dieses Pazifikstaates sind von undurchdringlichem Regenwald bedeckt.'},
+    {hr:'Planinska područja ove države imala su tribalne kulture bez ikakvog kontakta s vanjskim svijetom sve do 1930-ih.',en:'Its highland regions had tribal cultures with no outside contact until the 1930s.',de:'Die Hochlandregionen dieses Landes hatten Stammeskulturen ohne Außenkontakt bis in die 1930er Jahre.'},
+    {hr:'Rajske ptice — jedne od najšarenijih ptica na Zemlji — endemične su za ovu državu.',en:'Birds of paradise — some of the world\'s most colourful birds — are endemic to this country.',de:'Paradiesvögel – einige der farbenprächtigsten Vögel der Welt – sind in diesem Land endemisch.'},
+    {hr:'Jedna je od zemalja s najvećim brojem smrtnih slučajeva od malarije na svijetu.',en:'Has one of the world\'s highest malaria mortality rates.',de:'Hat eine der höchsten Malaria-Sterblichkeitsraten der Welt.'},
   ],
   FJ: [
     {hr:'Fidži ima 333 otoka, od kojih je 106 nastanjeno.',en:'Fiji has 333 islands, 106 of them inhabited.',de:'Fidschi hat 333 Inseln, 106 davon bewohnt.'},

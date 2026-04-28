@@ -36,15 +36,16 @@ function getPool(countries: Country[], level: Level): Country[] {
 // Extra aliases that the country name/capital check won't catch automatically
 // (irregular adjective stems, abbreviations, demonyms with different roots)
 const EXTRA_STEMS: Record<string, string[]> = {
+  // Irregular adjective/demonym roots that differ from the country name
   GB: ['britanij', 'britans', 'britanac'],
   US: ['američ', 'amerik'],
   RS: ['srpsk', 'srbijanc'],
   BA: ['bosansk', 'bošnjac', 'bošnjak'],
-  CH: ['švicarsk', 'švicarac'],
+  CH: ['švicarsk', 'švicarac', 'ženev', 'davos', 'züric'],
   AU: ['australsk', 'australac'],
   NZ: ['novozeland'],
   FR: ['francusk', 'francuz'],
-  DE: ['njemac', 'nijemac'],
+  DE: ['nijemac', 'autobahn'],
   IT: ['talijanac', 'talijansk'],
   ES: ['španjolsk', 'španjolac'],
   PT: ['portugals'],
@@ -69,6 +70,9 @@ const EXTRA_STEMS: Record<string, string[]> = {
   TR: ['tursk', 'turčin'],
   IR: ['iransk', 'iranac'],
   RU: ['rusima'],
+  // ISO/common abbreviations used in facts
+  PG: ['png'],
+  DO: ['\\"dr ', '"dr '],
 }
 
 function containsHint(factText: string, country: Country, lang: Lang): boolean {
@@ -82,14 +86,15 @@ function containsHint(factText: string, country: Country, lang: Lang): boolean {
   for (const term of terms) {
     const t = term.toLowerCase()
     if (text.includes(t)) return true
-    // Stem = name without its last character catches declined forms and adjectives:
-    // "Malta"→"Malt" catches "malteški/Maltu/Malte"
-    // "Norveška"→"Norveš" catches "norveški/Norveškog/Norveškoj"
-    // "Belgija"→"Belgij" catches "belgijski/Belgiji/Belgijanci"
-    // "Danska"→"Dansk" catches "danski/Danske"
-    // "Kijev"→"Kije" catches "Kijevu/Kijeva"
-    const stem = t.slice(0, -1)
-    if (stem.length >= 4 && text.includes(stem)) return true
+    // Stem-1 (name minus last char): catches most declined forms and adjectives
+    // "Malta"→"Malt" catches "malteški/Maltu", "Danska"→"Dansk" catches "danski"
+    const s1 = t.slice(0, -1)
+    if (s1.length >= 4 && text.includes(s1)) return true
+    // Stem-3 (name minus last 3 chars): catches deeper morphological changes
+    // "Bjelorusija"→"Bjelorus" catches "bjeloruskog/bjeloruski"
+    // "Armenija"→"Armen" catches "armenski/Armenaca"
+    const s3 = t.slice(0, -3)
+    if (s3.length >= 5 && text.includes(s3)) return true
   }
 
   // Check known irregular adjective/demonym stems
