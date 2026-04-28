@@ -75,6 +75,73 @@ Nikad ne zanemaruj nijedan od ovih pravila.
 
 ---
 
+## Pravilnik za Zanimljivosti kviz (TriviaQuizView) — OBAVEZNO čitati prije svake izmjene
+
+Kviz "Zanimljivosti" prikazuje činjenicu i traži igrača da pogodi **za koju državu vrijedi**.
+Svaka činjenica mora biti **potpuno anonimna** — bez ikakvog traga koji otkriva odgovor.
+
+### Zabranjeno u tekstu činjenice (otkriva odgovor)
+
+**1. Ime države u bilo kojem obliku:**
+- Nominativ: "Nepal nikada nije..." ✗ → "Ova zemlja nikada nije..." ✓
+- Genitiv: "stanovništva Bjelorusije" ✗ → "stanovništva ove države" ✓
+- Lokativ: "u Norveškoj" ✗ → generična formulacija ✓
+- Akuzativ: "nazvao Maltu" ✗ → "nazvao ovaj otok" ✓
+
+**2. Pridjevi izvedeni iz imena države:**
+- "Malteški jezik" ✗ (Malta) → "Jedini semitski jezik pisan latiničnim pismom" ✓
+- "bjeloruskog stanovništva" ✗ (Bjelorusija) → "stanovništva ove države" ✓
+- "norveški fjordovi" ✗ → generično ✓
+- "srpska kuhinja" ✗ → generično ✓
+- "britanski imperij" ✗ → "Britansko Carstvo" je OK jer nije ime države HR
+
+**3. Kratice i skraćenice koje su ime države:**
+- "PNG je..." ✗ (Papua Nova Gvineja) → "Ova pacifička država..." ✓
+- "DR je dala..." ✗ (Dominikanska Republika) → "Dala je..." ✓
+- "UK je..." ✗ → "Jedna je od samo 3 zemlje..." ✓
+
+**4. Ime glavnog grada ili drugog prepoznatljivog grada:**
+- "u Kijevu" ✗ → otkriva Ukrajinu → izbaci ili preformuliraj
+- "u Ženevi" ✗ → otkriva Švicarsku → "u ovoj zemlji" ✓
+- "u Tokiju" ✗ → otkriva Japan
+
+**5. Specifični pojmovi prepoznatljivi samo za jednu zemlju:**
+- "Autobahn" ✗ → otkriva Njemačku → "autoceste ove zemlje" ✓
+- "Bundesliga" ✗ → otkriva Njemačku
+- "Fjord" kao pojam u kontekstu turizma ✗ → može biti prihvatljivo ako je generično
+- "Amazon" kao rijeka ✗ → može otkriti Brazil
+
+### Formula za pisanje anonimnih činjenica
+
+Umjesto: `"[Država] je [činjenica]."` ili `"U [gradu] je [činjenica]."`
+
+Koristi:
+- `"Ova zemlja..."` / `"Ova država..."` / `"Ova pacifička nacija..."`
+- `"Jedina je zemlja koja..."` / `"Prva je zemlja koja..."`
+- `"Ovdje se nalazi..."` / `"Ovdje živi..."`
+- Pasivne konstrukcije: `"Crveni križ osnovan je 1863. u ovoj zemlji."` ✓
+
+### Provjera prije dodavanja/izmjene činjenice
+
+Prije nego napišeš ili izmijeniš činjenicu, provjeri:
+1. Sadrži li tekst ime države (nominativ, genitiv, akuzativ, lokativ...)?
+2. Sadrži li pridjeve jasno izvedene iz tog imena (malteški, norveški, srpski...)?
+3. Sadrži li kraticu ili poznati nadimak države (PNG, DR, UK...)?
+4. Sadrži li ime glavnog grada ili drugog ikoničnog grada (Kijev, Ženeva, Tokio...)?
+5. Sadrži li pojam koji je jedinstven za tu jednu državu (Autobahn, Bundesliga...)?
+
+Ako je odgovor DA na bilo koje pitanje → **prepiši ili izbaci tu činjenicu**.
+
+### Pogrešni odgovori u kvizu (distractors)
+
+Programski filter u `TriviaQuizView.tsx` automatski:
+- Bira pogrešne odgovore **s istog kontinenta** → Afričke činjenice imaju afričke opcije
+- Filtrira činjenice koje sadrže ime/kapital/stem u sva 3 jezika
+
+Ako dodaješ novu državu ili mijenjate logiku kviza, provjeri `containsHint()` i `EXTRA_STEMS` u `TriviaQuizView.tsx`.
+
+---
+
 ## Git
 - Commit i push odmah nakon svake promjene — ne čekaj da korisnik pita
 - Commit poruke na engleskom, opisne
