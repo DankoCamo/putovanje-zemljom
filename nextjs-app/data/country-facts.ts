@@ -861,7 +861,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   CI: [
     {hr:'Côte d\'Ivoire je najveći producent kakaa na Zemlji (40% svjetske opskrbe).',en:'Côte d\'Ivoire is the world\'s largest cocoa producer (40% of global supply).',de:'Côte d\'Ivoire ist der weltgrößte Kakaoproduzent (40% des weltweiten Angebots).'},
     {hr:'Bazilika Gospe od mira u Yamoussoukrou veća je od Sv. Petra u Rimu.',en:'The Basilica of Our Lady of Peace in Yamoussoukro is larger than St. Peter\'s in Rome.',de:'Die Basilika Unserer Lieben Frau des Friedens in Yamoussoukro ist größa als der Petersdom in Rom.'},
-    {hr:'Głównog président Houphouet-Boigny preselio je prijestolnicu u svoje rodno selo.',en:'First president Houphouet-Boigny moved the capital to his home village.',de:'Erster Präsident Houphouet-Boigny verlegte die Hauptstadt in sein Heimatdorf.'},
+    {hr:'Prvi predsjednik Houphouet-Boigny preselio je prijestolnicu u svoje rodno selo.',en:'First president Houphouet-Boigny moved the capital to his home village.',de:'Erster Präsident Houphouet-Boigny verlegte die Hauptstadt in sein Heimatdorf.'},
     {hr:'Côte d\'Ivoire je jedan od najvećih izvoznika kave u Africi.',en:'Côte d\'Ivoire is one of Africa\'s largest coffee exporters.',de:'Côte d\'Ivoire ist einer der größten Kaffeeexporteure Afrikas.'},
     {hr:'Zemlja je dva puta osvojila Afrički kup nacija (2015, 2023).',en:'The country has won the Africa Cup of Nations twice (2015, 2023).',de:'Das Land hat den Afrika-Cup der Nationen zweimal gewonnen (2015, 2023).'},
   ],
@@ -1055,11 +1055,11 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'São toméanska čokolada smatra se jednom od najboljeg na Zemlji.',en:'São Tomé chocolate is considered among the world\'s finest.',de:'São-toméische Schokolade gilt als eine der besten der Welt.'},
   ],
   US: [
-    {hr:'SAD ima najveće gospodarstvo na svijetu (BDP ~27 bilijuna $).',en:'The USA has the world\'s largest economy (GDP ~$27 trillion).',de:'Die USA haben die weltweit größte Wirtschaft (BIP ~27 Billionen $).'},
+    {hr:'Ima najveće gospodarstvo na svijetu (BDP oko 27 bilijuna dolara).',en:'Has the world\'s largest economy (GDP ~$27 trillion).',de:'Hat die weltweit größte Wirtschaft (BIP ~27 Billionen $).'},
     {hr:'Najstariji pisani nacionalni ustav koji je i danas na snazi (1787).',en:'The world\'s oldest written national constitution still in use (1787).',de:'Die älteste schriftliche Nationalverfassung, die noch in Kraft ist (1787).'},
-    {hr:'SAD je treća zemlja po površini i populaciji.',en:'The USA is the third-largest country by both area and population.',de:'Die USA sind das drittgrößte Land sowohl nach Fläche als auch nach Bevölkerung.'},
+    {hr:'Treća je zemlja na svijetu i po površini i po broju stanovnika.',en:'Is the third-largest country by both area and population.',de:'Ist das drittgrößte Land sowohl nach Fläche als auch nach Bevölkerung.'},
     {hr:'Silicon Valley u Kaliforniji producira četvrtinu svjetskih tehnoloških patenata.',en:'Silicon Valley in California produces a quarter of the world\'s tech patents.',de:'Silicon Valley in Kalifornien produziert ein Viertel der weltweiten Technikpatente.'},
-    {hr:'SAD ima više Nobelovih nagrada od ijedne druge zemlje.',en:'The USA has more Nobel Prize winners than any other country.',de:'Die USA haben mehr Nobelpreisträger als jedes andere Land.'},
+    {hr:'Ima više Nobelovih nagrada od ijedne druge države na svijetu.',en:'Has more Nobel Prize winners than any other country in the world.',de:'Hat mehr Nobelpreisträger als jedes andere Land der Welt.'},
   ],
   CA: [
     {hr:'Kanada je 2. najveća zemlja na svijetu po površini.',en:'Canada is the world\'s second-largest country by area.',de:'Kanada ist das zweitgrößte Land der Welt nach Fläche.'},
