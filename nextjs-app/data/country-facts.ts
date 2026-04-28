@@ -1,5 +1,22 @@
 import type { MultiLang } from '@/lib/types'
 
+/*
+ * PRAVILNIK — pročitaj prije svake izmjene (detalji u /CLAUDE.md):
+ *
+ * TOČNOST:  Provjeri superlative! Nigerija (ne Egipat) = najmnogoljudnija Afrike.
+ *           Nikad "jedina/prva/najveća" bez provjere.
+ *
+ * HR padež: "u Sahari" ✓  "u Sahara" ✗ | "svjetskog bakra" ✓  "svjetske bakra" ✗
+ * HR rod:   "riječna delta" ✓  "riječni delta" ✗  (delta = ž.r.)
+ * HR leksik:"Ruandski" ✓  "Rwandski" ✗ | "proizveo" ✓  "producirao" ✗
+ *           "promatranje gorila" ✓  "gorilu trekking" ✗
+ * HR stil:  Ne miješaj jezike: "Singapurom Afrike" ✓  "Afrikas Singapore" ✗
+ *
+ * EN:       Capitalise proper nouns. Comma = thousands sep. (1,000). Oxford comma.
+ * DE:       Alle Substantive groß. Komposita: "Kupfergürtel" ✓ "Kupfer Gürtel" ✗
+ *           Anführungszeichen „..." ✓  "..." ✗  |  ruandisch ✓  rwandisch ✗
+ */
+
 export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   HR: [
     {hr:'Ima 1.244 otoka — jedno od najrazvedenijih obala Europe.',en:'Has 1,244 islands — one of Europe\'s most indented coastlines.',de:'Hat 1.244 Inseln – eine der zerklüftetsten Küsten Europas.'},
