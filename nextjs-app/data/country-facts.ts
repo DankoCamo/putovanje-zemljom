@@ -89,7 +89,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Bugarska je uvela euro 1. siječnja 2026., napuštajući lev nakon 143 godine.',en:'Bulgaria adopted the euro on 1 January 2026, retiring the lev after 143 years.',de:'Bulgarien führte den Euro am 1. Januar 2026 ein und verabschiedete den Lew nach 143 Jahren.'},
   ],
   RO: [
-    {hr:'Bucureška Palača parlamenta druga je najveća zgrada na svijetu.',en:'Bucharest\'s Palace of Parliament is the world\'s second-largest building.',de:'Der Parlamentspalast in Bukarest ist das zweitgrößte Gebäude der Welt.'},
+    {hr:'Palača parlamenta u ovoj državi druga je najveća zgrada na svijetu po površini.',en:'The Palace of Parliament in this country is the world\'s second-largest building by surface area.',de:'Der Parlamentspalast in diesem Land ist das zweitgrößte Gebäude der Welt nach Grundfläche.'},
     {hr:'Transilvanija znači "zemlja s onu stranu šume" na latinskom.',en:'Transylvania means "land beyond the forest" in Latin.',de:'Transsilvanien bedeutet auf Latein „Land jenseits des Waldes".'},
     {hr:'Delata Dunava jedno je od posljednjih divljih staništa u Europi.',en:'The Danube Delta is one of Europe\'s last true wilderness areas.',de:'Das Donaudelta ist eines der letzten echten Wildnisgebiete Europas.'},
     {hr:'Rumunjska je dom legendi o Drakuli — dvorac Bran u Transilvaniji.',en:'Romania is home to the Dracula legend — Bran Castle in Transylvania.',de:'Rumänien beherbergt die Dracula-Legende – Schloss Bran in Siebenbürgen.'},
@@ -180,9 +180,9 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Plava laguna na Cominu smatra se jednom od najljepših voda Mediterana.',en:'The Blue Lagoon at Comino is considered one of the Mediterranean\'s most beautiful waters.',de:'Die Blaue Lagune bei Comino gilt als eines der schönsten Gewässer des Mittelmeers.'},
   ],
   CY: [
-    {hr:'Riječ "bakar" dolazi od latinskog Cuprum — prema Cipru, gdje su Grci vadili bakar.',en:'The word "copper" comes from the Latin Cuprum — named after Cyprus, where Greeks mined it.',de:'Das Wort „Kupfer" kommt vom lateinischen Cuprum – benannt nach Zypern, wo die Griechen es abbauten.'},
+    {hr:'Latinska riječ za bakar — Cuprum — potječe od naziva ovog otoka, koji je u antici bio poznat po bogatim nalazištima bakra.',en:'The Latin word for copper — Cuprum — comes from the name of this island, famed in antiquity for its copper deposits.',de:'Das lateinische Wort für Kupfer — Cuprum — stammt vom Namen dieser Insel, die in der Antike für ihre Kupfervorkommen bekannt war.'},
     {hr:'Jedini je podijeljeni glavni grad na svijetu — tampon zona UN-a dijeli ga od 1974.',en:'The world\'s only divided capital city — a UN buffer zone has split it since 1974.',de:'Die einzige geteilte Hauptstadt der Welt – seit 1974 trennt sie eine UN-Pufferzone.'},
-    {hr:'Prema grčkoj mitologiji, Afrodita je rođena iz morske pjene uz obalu Cipra.',en:'According to Greek mythology, Aphrodite was born from sea foam off the coast of Cyprus.',de:'Laut griechischer Mythologie wurde Aphrodite aus dem Meeresschaum vor der Küste Zyperns geboren.'},
+    {hr:'Prema grčkoj mitologiji, Afrodita je rođena iz morske pjene uz obalu ovog otoka.',en:'According to Greek mythology, Aphrodite was born from sea foam off the coast of this island.',de:'Laut griechischer Mythologie wurde Aphrodite aus dem Meeresschaum vor der Küste dieser Insel geboren.'},
     {hr:'Cipar je treći po veličini i treći po broju stanovnika otok u Sredozemnom moru.',en:'Cyprus is the third-largest and third-most-populous island in the Mediterranean Sea.',de:'Zypern ist die drittgrößte und drittbevölkerungsreichste Insel im Mittelmeer.'},
     {hr:'Jedina je zemlja EU u kojoj vojska strane države drži okupirani dio teritorija.',en:'It is the only EU member state with part of its territory under foreign military occupation.',de:'Es ist das einzige EU-Mitglied, dessen Territorium teilweise unter ausländischer Militärbesatzung steht.'},
   ],
@@ -657,9 +657,9 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   KP: [
     {hr:'Sjeverna Koreja je najizoliranije i najtajnovitije kraljevstvo na Zemlji.',en:'North Korea is the world\'s most isolated and secretive state.',de:'Nordkorea ist der isolierteste und geheimnisvollste Staat der Welt.'},
-    {hr:'Ima najveći stadion na Zemlji (Rungrado, kapacitet 114.000).',en:'It has the world\'s largest stadium (Rungrado, capacity 114,000).',de:'Es hat das größte Stadion der Welt (Rungrado, Kapazität 114.000).'},
-    {hr:'Sjevernokorejski kalendar počinje od godišta Kim Il-sunga (1912 = Godina 1).',en:'North Korea\'s official calendar starts from Kim Il-sung\'s birth year (1912 = Year 1).',de:'Nordkoreas offizieller Kalender beginnt mit Kim Il-sungs Geburtsjahr (1912 = Jahr 1).'},
-    {hr:'Noću je Sjeverna Koreja potpuno tamna na satelitskim snimkama.',en:'At night North Korea appears completely dark in satellite images.',de:'Nachts erscheint Nordkorea auf Satellitenbildern vollständig dunkel.'},
+    {hr:'Ima najveći stadion na Zemlji s kapacitetom od 114.000 mjesta.',en:'Has the world\'s largest stadium with a capacity of 114,000 seats.',de:'Hat das größte Stadion der Welt mit einer Kapazität von 114.000 Plätzen.'},
+    {hr:'Službeni kalendar ove države počinje od 1912. (godine 1) — godišta svog osnivača.',en:'This country\'s official calendar starts from 1912 (Year 1) — the birth year of its founding leader.',de:'Der offizielle Kalender dieses Landes beginnt ab 1912 (Jahr 1) – dem Geburtsjahr seines Staatsgründers.'},
+    {hr:'Noću je ova država potpuno tamna na satelitskim snimkama zbog nestašice električne energije.',en:'At night this country appears completely dark in satellite images due to electricity shortages.',de:'Nachts erscheint dieses Land auf Satellitenbildern vollständig dunkel, wegen Strommangels.'},
     {hr:'Građani smiju birati između samo 28 odobrenih frizura.',en:'Citizens may choose from only 28 approved hairstyles.',de:'Bürger dürfen aus nur 28 genehmigten Frisuren wählen.'},
   ],
   TW: [
@@ -1127,8 +1127,8 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   CU: [
     {hr:'Kuba je najveći svjetski izvoznik medicinskog osoblja (30.000 doktora u inozemstvu).',en:'Cuba is the world\'s largest exporter of medical personnel (30,000 doctors abroad).',de:'Kuba ist der weltgrößte Exporteur von medizinischem Personal (30.000 Ärzte im Ausland).'},
     {hr:'Kuba ima jedan od najviših omjera doktora po stanovniku na Zemlji.',en:'Cuba has one of the world\'s highest ratios of doctors to population.',de:'Kuba hat eines der höchsten Verhältnisse von Ärzten zur Bevölkerung der Welt.'},
-    {hr:'Hemingway je napisao "Starac i more" na Kubi.',en:'Hemingway wrote "The Old Man and the Sea" in Cuba.',de:'Hemingway schrieb „Der alte Mann und das Meer" auf Kuba.'},
-    {hr:'Klasični automobili iz 1950-ih žive na Kubi zbog američkog embarga.',en:'Classic cars from the 1950s survive in Cuba because of the US trade embargo.',de:'Oldtimer aus den 1950ern überleben auf Kuba wegen des US-Handelsembargos.'},
+    {hr:'Hemingway je napisao "Starac i more" boravkom u ovoj karipskoj državi.',en:'Hemingway wrote "The Old Man and the Sea" during his time in this Caribbean country.',de:'Hemingway schrieb „Der alte Mann und das Meer" während seines Aufenthalts in diesem karibischen Land.'},
+    {hr:'Klasični automobili iz 1950-ih i danas voze ulicama ove karipske države zbog dugogodišnjeg ekonomskog embarga.',en:'Classic cars from the 1950s still cruise the streets of this Caribbean country due to a long-standing economic embargo.',de:'Oldtimer aus den 1950ern fahren noch immer durch die Straßen dieses karibischen Landes wegen eines langjährigen Wirtschaftsembargos.'},
     {hr:'Kuba ima stopu pismenosti od 99% — jednu od najviših u Latinskoj Americi.',en:'Cuba has a 99% literacy rate — one of the highest in Latin America.',de:'Kuba hat eine Alphabetisierungsrate von 99% – eine der höchsten in Lateinamerika.'},
   ],
   JM: [

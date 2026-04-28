@@ -72,7 +72,12 @@ const EXTRA_STEMS: Record<string, string[]> = {
   RU: ['rusima'],
   // ISO/common abbreviations used in facts
   PG: ['png'],
-  DO: ['\\"dr ', '"dr '],
+  DO: ['"dr ', '"dr '],
+  // Compound adjectives and unique identifiers
+  KP: ['sjevernokorejsk', 'pjongjang', 'rungrado', 'juche', 'kim il', 'kim jong'],
+  CY: ['cipr'],
+  CU: ['karib'],
+  RO: ['bucure', 'bukar'],
 }
 
 function containsHint(factText: string, country: Country, lang: Lang): boolean {
@@ -88,8 +93,9 @@ function containsHint(factText: string, country: Country, lang: Lang): boolean {
     if (text.includes(t)) return true
     // Stem-1 (name minus last char): catches most declined forms and adjectives
     // "Malta"→"Malt" catches "malteški/Maltu", "Danska"→"Dansk" catches "danski"
+    // Min 3 chars to catch short names: "Kuba"→"Kub" catches "Kubi/Kube/Kubu"
     const s1 = t.slice(0, -1)
-    if (s1.length >= 4 && text.includes(s1)) return true
+    if (s1.length >= 3 && text.includes(s1)) return true
     // Stem-3 (name minus last 3 chars): catches deeper morphological changes
     // "Bjelorusija"→"Bjelorus" catches "bjeloruskog/bjeloruski"
     // "Armenija"→"Armen" catches "armenski/Armenaca"
