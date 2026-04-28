@@ -649,8 +649,8 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Jedino preživjelo čudo antičkog svijeta — Keopsova piramida — je u Egiptu.',en:'The only surviving Wonder of the Ancient World — the Great Pyramid — is in Egypt.',de:'Das einzige überlebende Weltwunder der Antike – die Cheops-Pyramide – steht in Ägypten.'},
     {hr:'Nil (6.650 km) je najdulja rijeka na Zemlji.',en:'The Nile (6,650 km) is the world\'s longest river.',de:'Der Nil (6.650 km) ist der längste Fluss der Welt.'},
     {hr:'Stari Egipćani su izumili papirusni papir, pastu za zube i kalendar.',en:'Ancient Egyptians invented papyrus paper, toothpaste, and the calendar.',de:'Alte Ägypter erfanden Papyrus, Zahnpasta und den Kalender.'},
-    {hr:'Kleopatra je živjela bliže u vremenu slijetanju na Mjesec nego gradnji piramida.',en:'Cleopatra lived closer in time to the Moon landing than to the construction of the pyramids.',de:'Kleopatra lebte zeitlich näher an der Mondlandung als am Bau der Pyramiden.'},
-    {hr:'Egipat je najmnogoljudnija zemlja Afrike (106 milijuna).',en:'Egypt is Africa\'s most populous country (106 million).',de:'Ägypten ist Afrikas bevölkerungsreichstes Land (106 Millionen).'},
+    {hr:'Kleopatra je vremenski bila bliže slijetanju na Mjesec nego gradnji piramida.',en:'Cleopatra lived closer in time to the Moon landing than to the construction of the pyramids.',de:'Kleopatra lebte zeitlich näher an der Mondlandung als am Bau der Pyramiden.'},
+    {hr:'Egipat je najmnogoljudnija zemlja sjeverne Afrike i arapskog svijeta (106 milijuna).',en:'Egypt is the most populous country in North Africa and the Arab world (106 million).',de:'Ägypten ist das bevölkerungsreichste Land Nordafrikas und der arabischen Welt (106 Millionen).'},
   ],
   LY: [
     {hr:'90% Libije je pustinja (Sahara).',en:'90% of Libya is desert (Sahara).',de:'90% Libyens sind Wüste (Sahara).'},
@@ -710,7 +710,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   TD: [
     {hr:'Čadsko jezero se smanjilo za 90% u zadnjih 50 godina zbog klimatskih promjena.',en:'Lake Chad has shrunk by 90% in the last 50 years due to climate change.',de:'Der Tschadsee ist in den letzten 50 Jahren um 90% geschrumpft.'},
-    {hr:'Tibesti planine su najviše u Sahara (3.415 m).',en:'The Tibesti Mountains are the highest in the Sahara (3,415 m).',de:'Das Tibesti-Gebirge ist das höchste in der Sahara (3.415 m).'},
+    {hr:'Tibesti planine su najviše u Sahari (3.415 m).',en:'The Tibesti Mountains are the highest in the Sahara (3,415 m).',de:'Das Tibesti-Gebirge ist das höchste in der Sahara (3.415 m).'},
     {hr:'Čad je jedna od pet najvećih zemalja Afrike.',en:'Chad is one of the five largest countries in Africa.',de:'Tschad ist eines der fünf größten Länder Afrikas.'},
     {hr:'Čad je od neovisnosti uglavnom u oružanim sukobima.',en:'Chad has been in near-constant armed conflict since independence.',de:'Tschad befindet sich seit der Unabhängigkeit fast ständig in bewaffneten Konflikten.'},
     {hr:'Jezero Čad dijelje četiri države: Čad, Nigeriju, Niger i Kamerun.',en:'Lake Chad is shared by four countries: Chad, Nigeria, Niger, and Cameroon.',de:'Der Tschadsee wird von vier Ländern geteilt: Tschad, Nigeria, Niger und Kamerun.'},
@@ -773,10 +773,10 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   RW: [
     {hr:'Ruanda je najejednakopravnija zemlja na Zemlji po spolu — 64% parlamenta su žene.',en:'Rwanda is the world\'s most gender-equal country — 64% of parliament are women.',de:'Ruanda ist das gleichstellungsgerechteste Land der Welt – 64% des Parlaments sind Frauen.'},
-    {hr:'Rwandski genocid 1994. ubio je 800.000 ljudi za samo 100 dana.',en:'The 1994 Rwandan genocide killed 800,000 people in just 100 days.',de:'Der ruandische Völkermord 1994 tötete in nur 100 Tagen 800.000 Menschen.'},
-    {hr:'Ruanda se danas naziva "Afrikas Singapore" zbog brzog razvoja i čistoće.',en:'Rwanda is now called "Africa\'s Singapore" for its rapid development and cleanliness.',de:'Ruanda wird heute wegen seiner raschen Entwicklung und Sauberkeit „Singapur Afrikas" genannt.'},
+    {hr:'Ruandski genocid 1994. ubio je 800.000 ljudi za samo 100 dana.',en:'The 1994 Rwandan genocide killed 800,000 people in just 100 days.',de:'Der ruandische Völkermord 1994 tötete in nur 100 Tagen 800.000 Menschen.'},
+    {hr:'Ruanda se danas naziva "Singapurom Afrike" zbog brzog razvoja i čistoće.',en:'Rwanda is now called "Africa\'s Singapore" for its rapid development and cleanliness.',de:'Ruanda wird heute wegen seiner raschen Entwicklung und Sauberkeit „Singapur Afrikas" genannt.'},
     {hr:'Ruanda je zabranila plastične vrećice i uvela redovite zajedničke dane čišćenja (Umuganda).',en:'Rwanda banned plastic bags and holds regular community cleaning days (Umuganda).',de:'Ruanda hat Plastiktüten verboten und hält regelmäßige Gemeinschaftsreinigungstage (Umuganda) ab.'},
-    {hr:'Ruanda je jedna od najtoplije prihvaćenih zemalja za gorilu trekking.',en:'Rwanda is one of the top destinations for gorilla trekking.',de:'Ruanda ist eines der beliebtesten Ziele für Gorilla-Trekking.'},
+    {hr:'Ruanda je jedno od vodećih odredišta za promatranje gorila u divljini.',en:'Rwanda is one of the world\'s top destinations for gorilla trekking in the wild.',de:'Ruanda ist eines der weltweit besten Reiseziele für Gorilla-Trekking in der Wildnis.'},
   ],
   BI: [
     {hr:'Burundi je jedna od najsiromašnijih zemalja na Zemlji.',en:'Burundi is one of the world\'s poorest countries.',de:'Burundi ist eines der ärmsten Länder der Welt.'},
@@ -935,7 +935,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ZM: [
     {hr:'Victorijini slapovi (na granici Zambije i Zimbabvea) su po volumenu najveći na Zemlji.',en:'Victoria Falls (on the Zambia-Zimbabwe border) is the world\'s largest waterfall by volume.',de:'Victoria Falls (an der Grenze Sambia-Simbabwe) ist der weltgrößte Wasserfall nach Volumen.'},
     {hr:'Zambija ima više od 70 etničkih skupina.',en:'Zambia has over 70 ethnic groups.',de:'Sambia hat über 70 ethnische Gruppen.'},
-    {hr:'Bakreni pojas u Zambiji producirao je večinu svjetske bakra u 20. st.',en:'Zambia\'s copper belt produced most of the world\'s copper in the 20th century.',de:'Sambias Kupfergürtel produzierte im 20. Jahrhundert den Großteil des Kupfers der Welt.'},
+    {hr:'Bakreni pojas u Zambiji proizveo je većinu svjetskog bakra u 20. st.',en:'Zambia\'s copper belt produced most of the world\'s copper in the 20th century.',de:'Sambias Kupfergürtel produzierte im 20. Jahrhundert den Großteil des Kupfers der Welt.'},
     {hr:'Zambija je prva afrička zemlja koja je u potpunosti prihvatila višestranačku demokraciju (1991).',en:'Zambia was the first country in Africa to fully embrace multi-party democracy (1991).',de:'Sambia war das erste Land in Afrika, das die Mehrparteiendemokratie vollständig annahm (1991).'},
     {hr:'Rijeka Zambezi prolazi kroz Zambiju 900 km.',en:'The Zambezi River runs through Zambia for 900 km.',de:'Der Sambesi fließt 900 km durch Sambia.'},
   ],
@@ -949,7 +949,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   BW: [
     {hr:'Bocvana ima više slonova nego ijedna zemlja na Zemlji (130.000+).',en:'Botswana has more elephants than any other country (130,000+).',de:'Botswana hat mehr Elefanten als jedes andere Land (130.000+).'},
     {hr:'Prešla je s jedne od najsiromašnijih zemalja na srednji prihod za 50 godina (dijamanti).',en:'Went from one of the world\'s poorest countries to middle income in 50 years (diamonds).',de:'Wandelte sich in 50 Jahren von einem der ärmsten Länder der Welt zu einem mittleren Einkommen (Diamanten).'},
-    {hr:'Okavango delta (UNESCO) je největší unutarnji riječni delta na Zemlji.',en:'The Okavango Delta (UNESCO) is the world\'s largest inland river delta.',de:'Das Okavango-Delta (UNESCO) ist das größte Binnenfluss-Delta der Welt.'},
+    {hr:'Okavango delta (UNESCO) je najveća unutarnja riječna delta na Zemlji.',en:'The Okavango Delta (UNESCO) is the world\'s largest inland river delta.',de:'Das Okavango-Delta (UNESCO) ist das größte Binnenfluss-Delta der Welt.'},
     {hr:'Kalahari pustinja pokriva 70% Bocvane.',en:'The Kalahari Desert covers 70% of Botswana.',de:'Die Kalahari-Wüste bedeckt 70% Botswanas.'},
     {hr:'Bocvana ima jednu od najstabilnijih afričkih demokracija.',en:'Botswana has one of Africa\'s most stable democracies.',de:'Botswana hat eine der stabilsten Demokratien Afrikas.'},
   ],
@@ -1012,9 +1012,9 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   SC: [
     {hr:'Coco de mer palma daje najveće sjeme na Zemlji (25 kg).',en:'The coco de mer palm produces the world\'s largest seed (25 kg).',de:'Die Coco-de-mer-Palme produziert den größten Samen der Welt (25 kg).'},
     {hr:'Sejšeli imaju najveći udio zaštićenog kopnenog teritorija (50%).',en:'Seychelles has the world\'s highest proportion of protected land area (50%).',de:'Die Seychellen haben den weltweit höchsten Anteil geschützter Landfläche (50%).'},
-    {hr:'Aldabra atol (UNESCO) je největji podignuti koralni atol na Zemlji.',en:'Aldabra Atoll (UNESCO) is the world\'s largest raised coral atoll.',de:'Aldabra-Atoll (UNESCO) ist das weltgrößte angehobene Korallenatoll.'},
+    {hr:'Aldabra atol (UNESCO) je najveći podignuti koralni atol na Zemlji.',en:'Aldabra Atoll (UNESCO) is the world\'s largest raised coral atoll.',de:'Aldabra-Atoll (UNESCO) ist das weltgrößte angehobene Korallenatoll.'},
     {hr:'Sejšeli su najmanji afrički suvereni narod po površini i broju stanovnika.',en:'Seychelles is Africa\'s smallest sovereign state by area and population.',de:'Die Seychellen sind Afrikas kleinster Souveränstaat nach Fläche und Bevölkerung.'},
-    {hr:'Giganstka Aldabra kornjača živi do 150 godina i autohtona je na Sejšelima.',en:'The Aldabra giant tortoise lives up to 150 years and is native to the Seychelles.',de:'Die Aldabra-Riesenschildkröte wird bis zu 150 Jahre alt und ist auf den Seychellen heimisch.'},
+    {hr:'Gigantska Aldabra kornjača živi do 150 godina i autohtona je na Sejšelima.',en:'The Aldabra giant tortoise lives up to 150 years and is native to the Seychelles.',de:'Die Aldabra-Riesenschildkröte wird bis zu 150 Jahre alt und ist auf den Seychellen heimisch.'},
   ],
   KM: [
     {hr:'Komori su imali 20 udara ili pokušaja puča od neovisnosti 1975.',en:'Comoros has had 20 coups or attempted coups since independence in 1975.',de:'Komoren hatte seit der Unabhängigkeit 1975 20 Staatsstreiche oder Putschversuche.'},
