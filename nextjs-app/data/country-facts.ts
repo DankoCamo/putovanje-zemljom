@@ -179,6 +179,13 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Malta je jedna od najgušće naseljenih zemalja na svijetu.',en:'Malta is one of the world\'s most densely populated countries.',de:'Malta ist eines der am dichtesten besiedelten Länder der Welt.'},
     {hr:'Plava laguna na Cominu smatra se jednom od najljepših voda Mediterana.',en:'The Blue Lagoon at Comino is considered one of the Mediterranean\'s most beautiful waters.',de:'Die Blaue Lagune bei Comino gilt als eines der schönsten Gewässer des Mittelmeers.'},
   ],
+  CY: [
+    {hr:'Riječ "bakar" dolazi od latinskog Cuprum — prema Cipru, gdje su Grci vadili bakar.',en:'The word "copper" comes from the Latin Cuprum — named after Cyprus, where Greeks mined it.',de:'Das Wort „Kupfer" kommt vom lateinischen Cuprum – benannt nach Zypern, wo die Griechen es abbauten.'},
+    {hr:'Nikozija je jedina podijeljena glavna zemlja na svijetu — tampon zona UN-a dijeli je od 1974.',en:'Nicosia is the world\'s only divided capital — a UN buffer zone has split it since 1974.',de:'Nikosia ist die einzige geteilte Hauptstadt der Welt – seit 1974 trennt sie eine UN-Pufferzone.'},
+    {hr:'Prema grčkoj mitologiji, Afrodita je rođena iz morske pjene uz obalu Cipra.',en:'According to Greek mythology, Aphrodite was born from sea foam off the coast of Cyprus.',de:'Laut griechischer Mythologie wurde Aphrodite aus dem Meeresschaum vor der Küste Zyperns geboren.'},
+    {hr:'Cipar je treći po veličini i treći po broju stanovnika otok u Sredozemnom moru.',en:'Cyprus is the third-largest and third-most-populous island in the Mediterranean Sea.',de:'Zypern ist die drittgrößte und drittbevölkerungsreichste Insel im Mittelmeer.'},
+    {hr:'Jedina je zemlja EU u kojoj vojska strane države drži okupirani dio teritorija.',en:'It is the only EU member state with part of its territory under foreign military occupation.',de:'Es ist das einzige EU-Mitglied, dessen Territorium teilweise unter ausländischer Militärbesatzung steht.'},
+  ],
   MC: [
     {hr:'Druga najmanja zemlja na svijetu po površini.',en:'The world\'s second-smallest country by area.',de:'Das zweitkleinste Land der Welt nach Fläche.'},
     {hr:'Monaco ima najveći BDP per capita na svijetu.',en:'Monaco has the world\'s highest GDP per capita.',de:'Monaco hat das höchste BIP pro Kopf der Welt.'},
@@ -372,7 +379,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Mezopotamija (današnji Irak) rodno je mjesto pisma, kotača i poljoprivrede.',en:'Mesopotamia (modern Iraq) is the birthplace of writing, the wheel, and agriculture.',de:'Mesopotamien (das heutige Irak) ist die Geburtsstätte von Schrift, Rad und Landwirtschaft.'},
     {hr:'Viseći vrtovi Babilona (jedno od 7 čuda) nalazili su se u Iraku.',en:'The Hanging Gardens of Babylon (one of the 7 Wonders) were located in Iraq.',de:'Die Hängenden Gärten von Babylon (eines der 7 Weltwunder) befanden sich im Irak.'},
     {hr:'Irak ima druge po veličini dokazane rezerve nafte na svijetu.',en:'Iraq has the world\'s second-largest proven oil reserves.',de:'Irak hat die zweitgrößten nachgewiesenen Ölreserven der Welt.'},
-    {hr:'Rijeke Tigar i Eufrat teče kroz Irak i daju mu naziv "Kolijevka civilizacije".',en:'The Tigris and Euphrates flow through Iraq, giving it the name "Cradle of Civilisation".',de:'Tigris und Euphrat fließen durch den Irak und geben ihm den Namen „Wiege der Zivilisation".'},
+    {hr:'Rijeke Tigris i Eufrat teku kroz Irak i daju mu naziv "Kolijevka civilizacije".',en:'The Tigris and Euphrates flow through Iraq, giving it the name "Cradle of Civilisation".',de:'Tigris und Euphrat fließen durch den Irak und geben ihm den Namen „Wiege der Zivilisation".'},
     {hr:'Bagdad je bio kulturno središte svijeta u 8–13. st. (Zlatno doba islama).',en:'Baghdad was the cultural centre of the world in the 8th–13th centuries (Islamic Golden Age).',de:'Bagdad war im 8.–13. Jahrhundert das kulturelle Zentrum der Welt (Islamisches Goldenes Zeitalter).'},
   ],
   SY: [
