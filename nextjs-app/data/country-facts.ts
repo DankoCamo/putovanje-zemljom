@@ -174,8 +174,8 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   MT: [
     {hr:'Ima najstarije nadzemne građevine na svijetu (Ggantija, 3600. g. pr. Kr.).',en:'Has the world\'s oldest freestanding structures (Ggantija temples, 3600 BC).',de:'Hat die ältesten freistehenden Bauwerke der Welt (Ggantija-Tempel, 3600 v. Chr.).'},
-    {hr:'Malteški jezik jedini je semitski jezik pisan latiničnim pismom.',en:'Maltese is the only Semitic language written in the Latin alphabet.',de:'Maltesisch ist die einzige semitische Sprache, die in lateinischer Schrift geschrieben wird.'},
-    {hr:'Churchill je nazvao Maltu "nesalomivim nosačem aviona" za WWII.',en:'Churchill called Malta the "unsinkable aircraft carrier" during WWII.',de:'Churchill nannte Malta während des Zweiten Weltkriegs den „unsinkbaren Flugzeugträger".'},
+    {hr:'Jedini je semitski jezik na svijetu koji se piše latiničnim pismom.',en:'The only Semitic language in the world written in the Latin alphabet.',de:'Die einzige semitische Sprache der Welt, die in lateinischer Schrift geschrieben wird.'},
+    {hr:'Churchill je nazvao ovaj mali otok "nesalomivim nosačem aviona" tijekom Drugog svjetskog rata.',en:'Churchill called this small island the "unsinkable aircraft carrier" during World War II.',de:'Churchill nannte diese kleine Insel während des Zweiten Weltkriegs den „unsinkbaren Flugzeugträger".'},
     {hr:'Malta je jedna od najgušće naseljenih zemalja na svijetu.',en:'Malta is one of the world\'s most densely populated countries.',de:'Malta ist eines der am dichtesten besiedelten Länder der Welt.'},
     {hr:'Plava laguna na Cominu smatra se jednom od najljepših voda Mediterana.',en:'The Blue Lagoon at Comino is considered one of the Mediterranean\'s most beautiful waters.',de:'Die Blaue Lagune bei Comino gilt als eines der schönsten Gewässer des Mittelmeers.'},
   ],

@@ -33,29 +33,32 @@ function getPool(countries: Country[], level: Level): Country[] {
   return countries.filter(c => c.continent !== 'Antarctica')
 }
 
+function containsHint(factText: string, country: Country, lang: Lang): boolean {
+  const text = factText.toLowerCase()
+  const terms = [
+    country.name.hr, country.name.en, country.name.de,
+    country.capital.hr, country.capital.en, country.capital.de,
+  ]
+  return terms.some(t => text.includes(t.toLowerCase()))
+}
+
 function buildQuestions(countries: Country[], level: Level, lang: Lang): TriviaQ[] {
   const pool = getPool(countries, level)
 
-  // Build flat list of (country, fact) pairs, excluding any fact that contains
-  // the country name in any language — those give away the answer immediately.
+  // Build flat list of valid (country, fact) pairs — exclude any fact that
+  // contains the country name or capital city name (in any language).
   const candidates: { country: Country; fact: string }[] = []
   for (const country of pool) {
     const facts = COUNTRY_FACTS[country.iso]
     if (!facts?.length) continue
-    const names = [
-      country.name.hr.toLowerCase(),
-      country.name.en.toLowerCase(),
-      country.name.de.toLowerCase(),
-    ]
     for (const f of facts) {
-      const text = f[lang].toLowerCase()
-      if (!names.some(n => text.includes(n))) {
+      if (!containsHint(f[lang], country, lang)) {
         candidates.push({ country, fact: f[lang] })
       }
     }
   }
 
-  // Deduplicate by country so no country appears twice in the same quiz
+  // One question per country, shuffled
   const seen = new Set<string>()
   const unique = shuffle(candidates).filter(({ country }) => {
     if (seen.has(country.iso)) return false
@@ -64,7 +67,11 @@ function buildQuestions(countries: Country[], level: Level, lang: Lang): TriviaQ
   })
 
   return unique.slice(0, TOTAL).map(({ country, fact }) => {
-    const others = shuffle(pool.filter(c => c.iso !== country.iso)).slice(0, 3)
+    // Wrong options come from the same continent so geographic clues in the
+    // fact don't trivially narrow it down to the only African/Caribbean/etc. option.
+    const sameContinent = pool.filter(c => c.iso !== country.iso && c.continent === country.continent)
+    const distractorPool = sameContinent.length >= 3 ? sameContinent : pool.filter(c => c.iso !== country.iso)
+    const others = shuffle(distractorPool).slice(0, 3)
     return { country, fact, options: shuffle([country, ...others]) }
   })
 }
