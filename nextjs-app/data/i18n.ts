@@ -4,7 +4,7 @@ export const I18N: I18nMap = {
   hr: {
     appTitle: "Putovanje Zemljom",
     appSubtitle: "Otkrij svijet — države, glavni gradovi, zastave i kvizovi",
-    nav: { globe: "Globus", atlas: "Zastave", compare: "Usporedba", quiz: "Kvizovi", trivia: "Zanimljivosti", top10: "Top 10" },
+    nav: { globe: "Globus", atlas: "Zastave", compare: "Usporedba", quiz: "Kvizovi", top10: "Top 10" },
     search: "Traži državu…",
     allContinents: "Svi kontinenti",
     continents: {
@@ -28,6 +28,7 @@ export const I18N: I18nMap = {
       modes: {
         capital: "Pogodi glavni grad", flag: "Pogodi zastavu",
         shape: "Pogodi po obliku", continent: "Pogodi kontinent", timed: "Utrka s vremenom",
+        trivia: "Zanimljivosti",
       },
       levels: { easy: "Lagano", medium: "Srednje", hard: "Teško" },
       start: "Kreni", next: "Sljedeće", restart: "Ponovi",
@@ -68,7 +69,7 @@ export const I18N: I18nMap = {
   en: {
     appTitle: "Putovanje Zemljom",
     appSubtitle: "Discover the world — countries, capitals, flags and quizzes",
-    nav: { globe: "Globe", atlas: "Flags", compare: "Compare", quiz: "Quizzes", trivia: "Trivia", top10: "Top 10" },
+    nav: { globe: "Globe", atlas: "Flags", compare: "Compare", quiz: "Quizzes", top10: "Top 10" },
     search: "Search country…",
     allContinents: "All continents",
     continents: {
@@ -92,6 +93,7 @@ export const I18N: I18nMap = {
       modes: {
         capital: "Guess the capital", flag: "Guess the flag",
         shape: "Guess by shape", continent: "Guess the continent", timed: "Time attack",
+        trivia: "Trivia",
       },
       levels: { easy: "Easy", medium: "Medium", hard: "Hard" },
       start: "Start", next: "Next", restart: "Play again",
@@ -132,7 +134,7 @@ export const I18N: I18nMap = {
   de: {
     appTitle: "Putovanje Zemljom",
     appSubtitle: "Entdecke die Welt — Länder, Hauptstädte, Flaggen und Quizze",
-    nav: { globe: "Globus", atlas: "Flaggen", compare: "Vergleich", quiz: "Quizze", trivia: "Wissenswertes", top10: "Top 10" },
+    nav: { globe: "Globus", atlas: "Flaggen", compare: "Vergleich", quiz: "Quizze", top10: "Top 10" },
     search: "Land suchen…",
     allContinents: "Alle Kontinente",
     continents: {
@@ -156,6 +158,7 @@ export const I18N: I18nMap = {
       modes: {
         capital: "Errate die Hauptstadt", flag: "Errate die Flagge",
         shape: "Errate nach Form", continent: "Errate den Kontinent", timed: "Zeitrennen",
+        trivia: "Wissenswertes",
       },
       levels: { easy: "Leicht", medium: "Mittel", hard: "Schwer" },
       start: "Start", next: "Weiter", restart: "Nochmal",

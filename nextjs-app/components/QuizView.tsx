@@ -4,6 +4,7 @@ import { Country, Lang, I18nT } from '@/lib/types'
 import { CONTINENTS } from '@/data/continents'
 import { flagUrl, shuffle } from '@/lib/utils'
 import CountryShape from './CountryShape'
+import TriviaQuizView from './TriviaQuizView'
 
 interface Props {
   countries: Country[]
@@ -11,7 +12,7 @@ interface Props {
   lang: Lang
 }
 
-type QuizMode = 'capital' | 'flag' | 'shape' | 'continent' | 'timed'
+type QuizMode = 'capital' | 'flag' | 'shape' | 'continent' | 'timed' | 'trivia'
 type Level = 'easy' | 'medium' | 'hard'
 
 interface Question {
@@ -121,6 +122,11 @@ export default function QuizView({ countries, t, lang }: Props) {
     if (timerRef.current) clearInterval(timerRef.current)
   }
 
+  // Trivia mode — delegate entirely to TriviaQuizView
+  if (mode === 'trivia') {
+    return <TriviaQuizView countries={countries} t={t} lang={lang} onBack={() => setMode(null)} />
+  }
+
   // Menu — pick mode
   if (!mode) {
     const modes: { id: QuizMode; emoji: string }[] = [
@@ -129,6 +135,7 @@ export default function QuizView({ countries, t, lang }: Props) {
       { id: 'shape', emoji: '🗺️' },
       { id: 'continent', emoji: '🌎' },
       { id: 'timed', emoji: '⏱️' },
+      { id: 'trivia', emoji: '💡' },
     ]
     return (
       <div className="quiz-view">

@@ -13,7 +13,7 @@ export default function TopBar() {
         <span className="logo-text">{t.appTitle}</span>
       </div>
       <nav className="nav">
-        {(['globe', 'atlas', 'compare', 'quiz', 'trivia', 'top10'] as const).map(v => (
+        {(['globe', 'atlas', 'compare', 'quiz', 'top10'] as const).map(v => (
           <button
             key={v}
             className={view === v ? 'active' : ''}

@@ -825,8 +825,8 @@ button {
   line-height: 1.6;
   color: var(--ink);
   background: var(--surface2);
-  border-left: 4px solid var(--accent);
-  border-radius: 10px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
   padding: 16px 20px;
   margin: 14px 0 4px;
   text-align: left;

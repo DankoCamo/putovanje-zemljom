@@ -8,6 +8,7 @@ interface Props {
   countries: Country[]
   t: I18nT
   lang: Lang
+  onBack?: () => void
 }
 
 type Level = 'easy' | 'medium' | 'hard'
@@ -44,7 +45,7 @@ function buildQuestions(countries: Country[], level: Level, lang: Lang): TriviaQ
   })
 }
 
-export default function TriviaQuizView({ countries, t, lang }: Props) {
+export default function TriviaQuizView({ countries, t, lang, onBack }: Props) {
   const [level, setLevel] = useState<Level>('easy')
   const [questions, setQuestions] = useState<TriviaQ[]>([])
   const [idx, setIdx] = useState(0)
@@ -60,6 +61,7 @@ export default function TriviaQuizView({ countries, t, lang }: Props) {
   }
 
   function restart() {
+    if (onBack) { onBack(); return }
     setRunning(false); setQuestions([]); setIdx(0)
     setScore(0); setAnswered(null); setFeedback('')
   }

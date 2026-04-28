@@ -2,7 +2,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { Country, TweakState, Lang } from '@/lib/types'
 
-type View = 'globe' | 'atlas' | 'compare' | 'quiz' | 'trivia' | 'top10'
+type View = 'globe' | 'atlas' | 'compare' | 'quiz' | 'top10'
 
 export type Era = 'current' | '1960'
 

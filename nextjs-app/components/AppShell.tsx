@@ -9,7 +9,6 @@ import CountryPanel from './CountryPanel'
 import AtlasView from './AtlasView'
 import CompareView from './CompareView'
 import QuizView from './QuizView'
-import TriviaQuizView from './TriviaQuizView'
 import GlobeWrapper from './GlobeWrapper'
 import Top10View from './Top10View'
 
@@ -122,9 +121,6 @@ function Shell({ countries }: { countries: Country[] }) {
         )}
         {view === 'quiz' && (
           <QuizView countries={countries} t={t} lang={lang} />
-        )}
-        {view === 'trivia' && (
-          <TriviaQuizView countries={countries} t={t} lang={lang} />
         )}
         {view === 'top10' && (
           <Top10View lang={lang} />
