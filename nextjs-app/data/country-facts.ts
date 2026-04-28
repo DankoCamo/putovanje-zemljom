@@ -77,7 +77,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   GR: [
     {hr:'Ima više od 6.000 otoka i otočića, samo 227 naseljeno.',en:'Has over 6,000 islands and islets, only 227 inhabited.',de:'Hat über 6.000 Inseln, nur 227 bewohnt.'},
     {hr:'Grčka ima najdulju obalu u Europi (13.676 km).',en:'Greece has the longest coastline in Europe (13,676 km).',de:'Griechenland hat die längste Küste Europas (13.676 km).'},
-    {hr:'Grčko pismo temelj je latinice i ćirilice.',en:'The Greek alphabet is the basis for both Latin and Cyrillic scripts.',de:'Das griechische Alphabet ist die Grundlage der lateinischen und kyrillischen Schrift.'},
+    {hr:'Grčko pismo temelj je latinice i ćirilice.',en:'Its alphabet is the foundation for both the Latin and Cyrillic writing systems.',de:'Sein Alphabet ist die Grundlage der lateinischen und kyrillischen Schrift.'},
     {hr:'Atena ima više od 148 kazališta — više nego ikoji grad na svijetu.',en:'Athens has more theatrical stages than any city in the world.',de:'Athen hat mehr Theaterbühnen als jede andere Stadt der Welt.'},
     {hr:'Santorini je nastao eksplozijom vulkana prije ~3.600 godina koja je uništila minojsku civilizaciju.',en:'Santorini was formed by a volcanic eruption ~3,600 years ago that devastated the Minoan civilisation.',de:'Santorin entstand durch einen Vulkanausbruch vor ~3.600 Jahren, der die minoische Zivilisation zerstörte.'},
   ],
@@ -170,7 +170,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Strop Sikstinske kapele Michelangelo je oslikao za 4 godine (1508–1512).',en:'Michelangelo painted the Sistine Chapel ceiling in 4 years (1508–1512).',de:'Michelangelo bemalte die Decke der Sixtinischen Kapelle in 4 Jahren (1508–1512).'},
     {hr:'Ima vlastitu banku, bolnicu, poštu i radijsku stanicu.',en:'Has its own bank, hospital, post office, and radio station.',de:'Hat seine eigene Bank, ein Krankenhaus, eine Post und einen Radiosender.'},
     {hr:'Vatikanska knjižnica čuva više od 1,1 milijun tiskanih knjiga.',en:'The Vatican Library holds over 1.1 million printed books.',de:'Die Vatikanische Bibliothek besitzt über 1,1 Millionen gedruckte Bücher.'},
-    {hr:'Švicarska garda štiti papu od 1506.',en:'The Swiss Guard has protected the Pope since 1506.',de:'Die Schweizergarde schützt den Papst seit 1506.'},
+    {hr:'Švicarska garda štiti papu od 1506.',en:'The papal guard has been recruited exclusively from this country since 1506.',de:'Die Schweizergarde schützt den Papst seit 1506.'},
   ],
   MT: [
     {hr:'Ima najstarije nadzemne građevine na svijetu (Ggantija, 3600. g. pr. Kr.).',en:'Has the world\'s oldest freestanding structures (Ggantija temples, 3600 BC).',de:'Hat die ältesten freistehenden Bauwerke der Welt (Ggantija-Tempel, 3600 v. Chr.).'},
@@ -202,14 +202,14 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   BE: [
     {hr:'Belgija proizvodi 220.000 tona čokolade godišnje.',en:'Belgium produces 220,000 tonnes of chocolate per year.',de:'Belgien produziert jährlich 220.000 Tonnen Schokolade.'},
-    {hr:'Pommes frites (prženi krumpirići) zapravo su belgijski izum iz 17. st.',en:'French fries are actually a Belgian invention from the 17th century.',de:'Pommes frites sind eigentlich eine belgische Erfindung aus dem 17. Jahrhundert.'},
-    {hr:'Saksofon izumio je Belgijanac Adolphe Sax 1840.',en:'The saxophone was invented by Belgian Adolphe Sax in 1840.',de:'Das Saxophon wurde 1840 vom Belgier Adolphe Sax erfunden.'},
-    {hr:'Belgijsko pivo je UNESCO nematerijalna kulturna baština.',en:'Belgian beer culture is a UNESCO Intangible Cultural Heritage.',de:'Die belgische Bierkultur ist immaterielles UNESCO-Kulturerbe.'},
+    {hr:'Pommes frites (prženi krumpirići) zapravo su belgijski izum iz 17. st.',en:'French fries were actually invented here in the 17th century.',de:'Pommes frites wurden eigentlich hier im 17. Jahrhundert erfunden.'},
+    {hr:'Saksofon izumio je Belgijanac Adolphe Sax 1840.',en:'The saxophone was invented here by Adolphe Sax in 1840.',de:'Das Saxophon wurde 1840 vom Belgier Adolphe Sax erfunden.'},
+    {hr:'Belgijsko pivo je UNESCO nematerijalna kulturna baština.',en:'Beer culture here is a UNESCO Intangible Cultural Heritage.',de:'Die Bierkultur dieses Landes ist immaterielles UNESCO-Kulturerbe.'},
     {hr:'Belgija ima više novinskih naslova po stanovniku od svih europskih zemalja.',en:'Belgium has more newspaper titles per capita than any European country.',de:'Belgien hat mehr Zeitungstitel pro Kopf als jedes europäische Land.'},
   ],
   NL: [
     {hr:'26% Nizozemske je ispod razine mora.',en:'26% of the Netherlands is below sea level.',de:'26% der Niederlande liegen unter dem Meeresspiegel.'},
-    {hr:'Nizozemci su u prosjeku najviši narod na svijetu (182,9 cm za muškarce).',en:'Dutch people are on average the tallest in the world (182.9 cm for men).',de:'Die Niederländer sind im Durchschnitt die größten Menschen der Welt (182,9 cm für Männer).'},
+    {hr:'Nizozemci su u prosjeku najviši narod na svijetu (182,9 cm za muškarce).',en:'People here are on average the tallest in the world (182.9 cm for men).',de:'Die Menschen dieses Landes sind im Durchschnitt die größten der Welt (182,9 cm für Männer).'},
     {hr:'Amsterdam ima više bicikala nego stanovnika.',en:'Amsterdam has more bicycles than people.',de:'Amsterdam hat mehr Fahrräder als Einwohner.'},
     {hr:'Tulipani potječu iz Turske, ali Nizozemska ih je popularizirala u Europi.',en:'Tulips originate from Turkey but the Netherlands popularised them in Europe.',de:'Tulpen stammen aus der Türkei, aber die Niederlande machten sie in Europa populär.'},
     {hr:'Nizozemska ima više muzeja po km² od bilo koje druge zemlje.',en:'The Netherlands has more museums per km² than any other country.',de:'Die Niederlande haben mehr Museen pro km² als jedes andere Land.'},
@@ -268,7 +268,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Danska zastava (Dannebrog) najstarija je nepromijenjena državna zastava (od 1370.).',en:'Denmark\'s flag (Dannebrog) is the world\'s oldest unchanged national flag (since 1370).',de:'Dänemarks Flagge (Dannebrog) ist die älteste unveränderte Nationalflagge der Welt (seit 1370).'},
     {hr:'Danska je sustavno rangirana kao najsretnija zemlja na svijetu.',en:'Denmark is consistently ranked as the world\'s happiest country.',de:'Dänemark wird konsequent als das glücklichste Land der Welt eingestuft.'},
     {hr:'Više od 45% svih putovanja u Kopenhagenu obavlja se biciklom.',en:'Over 45% of all journeys in Copenhagen are made by bicycle.',de:'Über 45% aller Fahrten in Kopenhagen werden mit dem Fahrrad gemacht.'},
-    {hr:'Danske vikinge su istraživale Sjevernu Ameriku 500 godina prije Kolumba.',en:'Danish Vikings explored North America 500 years before Columbus.',de:'Dänische Wikinger erkundeten Nordamerika 500 Jahre vor Kolumbus.'},
+    {hr:'Danske vikinge su istraživale Sjevernu Ameriku 500 godina prije Kolumba.',en:'Vikings from this country explored North America 500 years before Columbus.',de:'Wikinger aus diesem Land erkundeten Nordamerika 500 Jahre vor Kolumbus.'},
   ],
   EE: [
     {hr:'Estonija je prva zemlja na svijetu koja je uvela glasovanje putem interneta (2005).',en:'Estonia was the first country to use internet voting in national elections (2005).',de:'Estland war das erste Land, das bei nationalen Wahlen Internet-Abstimmungen einführte (2005).'},
@@ -293,15 +293,15 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   PL: [
     {hr:'Malbork je najveći gotički dvorac na svijetu.',en:'Malbork Castle is the world\'s largest Gothic castle.',de:'Schloss Malbork ist die größte Gotische Burg der Welt.'},
-    {hr:'Marie Curie, jedina osoba s dvije Nobelove nagrade iz različitih znanosti, bila je Poljakinja.',en:'Marie Curie, the only person with two Nobel Prizes in different sciences, was Polish.',de:'Marie Curie, die einzige Person mit zwei Nobelpreisen in verschiedenen Wissenschaften, war Polin.'},
-    {hr:'Kopernik (heliocentrični model) bio je Poljak.',en:'Copernicus (the heliocentric model) was Polish.',de:'Kopernikus (heliozentrische Modell) war Pole.'},
+    {hr:'Marie Curie, jedina osoba s dvije Nobelove nagrade iz različitih znanosti, bila je Poljakinja.',en:'Marie Curie, the only person with two Nobel Prizes in different sciences, was born here.',de:'Marie Curie, die einzige Person mit zwei Nobelpreisen in verschiedenen Wissenschaften, wurde hier geboren.'},
+    {hr:'Kopernik (heliocentrični model) bio je Poljak.',en:'Copernicus (the heliocentric model) was born here.',de:'Kopernikus (heliozentrische Modell) war Pole.'},
     {hr:'Polska je bila 123 godine izbrisana s karte (1795–1918).',en:'Poland was wiped off the map for 123 years (1795–1918).',de:'Polen war 123 Jahre lang von der Landkarte verschwunden (1795–1918).'},
     {hr:'Polska producira više od polovice europskog jabuka.',en:'Poland produces more than half of Europe\'s apples.',de:'Polen produziert mehr als die Hälfte der europäischen Äpfel.'},
   ],
   CZ: [
-    {hr:'Česi piju više piva po stanovniku nego ijedna druga nacija (~160 l/god).',en:'Czechs drink more beer per capita than any other nation (~160 litres/year).',de:'Tschechen trinken mehr Bier pro Kopf als jede andere Nation (~160 l/Jahr).'},
-    {hr:'Kocke šećera izumljene su u češkoj Bohemiji 1843.',en:'Sugar cubes were invented in Czech Bohemia in 1843.',de:'Zuckerwürfel wurden 1843 in der böhmischen Region der Tschechischen Republik erfunden.'},
-    {hr:'Riječ "robot" dolazi iz češkog (Karel Čapek, 1920).',en:'The word "robot" comes from Czech (Karel Čapek, 1920).',de:'Das Wort „Roboter" kommt aus dem Tschechischen (Karel Čapek, 1920).'},
+    {hr:'Česi piju više piva po stanovniku nego ijedna druga nacija (~160 l/god).',en:'People here drink more beer per capita than any other nation (~160 litres/year).',de:'Die Menschen hier trinken mehr Bier pro Kopf als jede andere Nation (~160 l/Jahr).'},
+    {hr:'Kocke šećera izumljene su u češkoj Bohemiji 1843.',en:'Sugar cubes were invented here — in the Bohemia region — in 1843.',de:'Zuckerwürfel wurden 1843 hier — in der böhmischen Region — erfunden.'},
+    {hr:'Riječ "robot" dolazi iz češkog (Karel Čapek, 1920).',en:'The word "robot" was coined here by writer Karel Čapek in 1920.',de:'Das Wort „Roboter" kommt aus dem Tschechischen (Karel Čapek, 1920).'},
     {hr:'Češka ima najveću proizvodnju automobila po stanovniku u Europi.',en:'Czechia has the highest car production per capita in Europe.',de:'Tschechien hat die höchste Fahrzeugproduktion pro Kopf in Europa.'},
     {hr:'Kontaktne leće izumio je Otto Wichterle u Pragu 1961.',en:'Contact lenses were invented by Otto Wichterle in Prague in 1961.',de:'Kontaktlinsen wurden 1961 von Otto Wichterle in Prag erfunden.'},
   ],
@@ -343,7 +343,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   TR: [
     {hr:'Istanbul je jedini grad na svijetu smješten na dva kontinenta (Europa i Azija).',en:'Istanbul is the only city in the world located on two continents (Europe and Asia).',de:'Istanbul ist die einzige Stadt der Welt, die auf zwei Kontinenten liegt (Europa und Asien).'},
     {hr:'Tulipani potječu iz Turske — ne iz Nizozemske.',en:'Tulips originate from Turkey — not the Netherlands.',de:'Tulpen stammen aus der Türkei – nicht aus den Niederlanden.'},
-    {hr:'Čaj (çay) je najpopularnije piće — Turci piju više čaja po stanovniku od ijedne nacije.',en:'Tea (çay) is the most popular drink — Turks drink more tea per capita than any nation.',de:'Tee (çay) ist das beliebteste Getränk – Türken trinken pro Kopf mehr Tee als jede andere Nation.'},
+    {hr:'Čaj (çay) je najpopularnije piće — ovdje se pije više čaja po stanovniku nego igdje u svijetu.',en:'Tea (çay) is the most popular drink — this country consumes more tea per capita than any other.',de:'Tee (çay) ist das beliebteste Getränk – hier wird pro Kopf mehr Tee getrunken als irgendwo sonst.'},
     {hr:'Hagia Sophia (537. g.) bila je najveća crkva na svijetu 1.000 godina.',en:'Hagia Sophia (537 AD) was the world\'s largest church for 1,000 years.',de:'Die Hagia Sophia (537 n. Chr.) war 1.000 Jahre lang die größte Kirche der Welt.'},
     {hr:'Turska je 6. najposjećenija zemlja na svijetu.',en:'Turkey is the 6th most visited country in the world.',de:'Die Türkei ist das 6. meistbesuchte Land der Welt.'},
   ],
@@ -394,7 +394,7 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
     {hr:'Bejrut je bio poznat kao "Pariz Bliskog istoka" prije građanskog rata.',en:'Beirut was known as the "Paris of the Middle East" before the civil war.',de:'Beirut war vor dem Bürgerkrieg als „Paris des Nahen Ostens" bekannt.'},
     {hr:'Libanon ima 18 službeno priznatih vjerskih sekta.',en:'Lebanon has 18 officially recognised religious sects.',de:'Libanon hat 18 offiziell anerkannte Religionsgemeinschaften.'},
     {hr:'Fenicijsko pismo, preteča svih abeceda, nastalo je na području današnjeg Libanona.',en:'Phoenician script, the ancestor of all alphabets, originated in modern-day Lebanon.',de:'Die phönizische Schrift, Vorläufer aller Alphabete, entstand im heutigen Libanon.'},
-    {hr:'Ekonomska kriza (2019.–) uništila je 80% vrijednosti libanske funte.',en:'The economic crisis (2019–) wiped out 80% of the Lebanese pound\'s value.',de:'Die Wirtschaftskrise (ab 2019) vernichtete 80% des Wertes des libanesischen Pfundes.'},
+    {hr:'Ekonomska kriza (2019.–) uništila je 80% vrijednosti nacionalne valute.',en:'The economic crisis (2019–) wiped out 80% of the national currency\'s value.',de:'Die Wirtschaftskrise (ab 2019) vernichtete 80% des Wertes der Landeswährung.'},
   ],
   IL: [
     {hr:'Izrael ima najveći broj startupa po stanovniku na svijetu (Silicon Wadi).',en:'Israel has the most startups per capita of any country (Silicon Wadi).',de:'Israel hat die meisten Start-ups pro Kopf aller Länder (Silicon Wadi).'},
@@ -650,9 +650,9 @@ export const COUNTRY_FACTS: Record<string, MultiLang[]> = {
   ],
   KR: [
     {hr:'Južna Koreja ima najbrže internetske veze na Zemlji.',en:'South Korea has the world\'s fastest internet speeds.',de:'Südkorea hat die schnellsten Internetgeschwindigkeiten der Welt.'},
-    {hr:'K-pop i korejske serije stvorile su globalnu "Hallyu" (korejski val).',en:'K-pop and Korean dramas have created a global "Hallyu" (Korean Wave).',de:'K-Pop und koreanische Serien haben eine globale „Hallyu" (Koreanische Welle) geschaffen.'},
+    {hr:'K-pop i korejske serije stvorile su globalnu "Hallyu" (korejski val).',en:'K-pop and TV dramas from this country created a global cultural wave called "Hallyu".',de:'K-Pop und TV-Serien aus diesem Land schufen eine globale Kulturwelle namens „Hallyu".'},
     {hr:'Hangul alfabet (1443) jedan je od najznanstvenijih abeceda na Zemlji.',en:'The Hangul alphabet (1443) is one of the world\'s most scientifically designed.',de:'Das Hangul-Alphabet (1443) ist eines der wissenschaftlichsten der Welt.'},
-    {hr:'Koreja je jedna od najbrže razvijenih ekonomija 20. st. ("Korejsko čudo").',en:'Korea achieved one of the fastest economic developments of the 20th century ("Korean Miracle").',de:'Korea erzielte eine der schnellsten wirtschaftlichen Entwicklungen des 20. Jh. („Koreanisches Wunder").'},
+    {hr:'Koreja je jedna od najbrže razvijenih ekonomija 20. st. ("Korejsko čudo").',en:'Achieved one of the fastest economic transformations of the 20th century.',de:'Erzielte eine der schnellsten wirtschaftlichen Entwicklungen des 20. Jahrhunderts.'},
     {hr:'Incheon aerodrom u Seulu je konstantno rangiran kao jedan od top u svijetu.',en:'Incheon Airport in Seoul is consistently ranked among the world\'s best.',de:'Der Incheon Flughafen in Seoul wird konsequent zu den besten der Welt gezählt.'},
   ],
   KP: [
