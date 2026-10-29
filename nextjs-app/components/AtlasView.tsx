@@ -9,15 +9,16 @@ interface Props {
   countries: Country[]
   t: I18nT
   lang: Lang
+  query: string
+  onQueryChange: (query: string) => void
   onSelectCountry: (c: Country) => void
 }
 
-export default function AtlasView({ countries, t, lang, onSelectCountry }: Props) {
-  const [q, setQ] = useState('')
+export default function AtlasView({ countries, t, lang, query, onQueryChange, onSelectCountry }: Props) {
   const [cont, setCont] = useState('all')
 
   const filtered = useMemo(() => {
-    const qn = q.trim().toLowerCase()
+    const qn = query.trim().toLowerCase()
     return countries.filter(c => {
       if (cont !== 'all' && c.continent !== cont) return false
       if (qn) {
@@ -26,7 +27,7 @@ export default function AtlasView({ countries, t, lang, onSelectCountry }: Props
       }
       return true
     }).sort((a, b) => a.name[lang].localeCompare(b.name[lang]))
-  }, [q, cont, countries, lang])
+  }, [query, cont, countries, lang])
 
   return (
     <div className="atlas-view">
@@ -34,8 +35,8 @@ export default function AtlasView({ countries, t, lang, onSelectCountry }: Props
         <input
           className="search-input"
           placeholder={t.search}
-          value={q}
-          onChange={e => setQ(e.target.value)}
+          value={query}
+          onChange={e => onQueryChange(e.target.value)}
         />
       </div>
       <div className="continent-chips">

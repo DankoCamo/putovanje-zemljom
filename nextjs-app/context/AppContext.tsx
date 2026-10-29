@@ -4,7 +4,8 @@ import { Country, TweakState, Lang } from '@/lib/types'
 
 type View = 'globe' | 'atlas' | 'compare' | 'quiz' | 'top10'
 
-export type Era = 'current' | '1960'
+export type Era = 'current' | '1938' | '1945' | '1960' | '1994' | '2010'
+export type MapTheme = 'none' | 'population' | 'area'
 
 interface AppContextValue {
   view: View
@@ -24,6 +25,10 @@ interface AppContextValue {
   lang: Lang
   era: Era
   setEra: (e: Era) => void
+  mapTheme: MapTheme
+  setMapTheme: (theme: MapTheme) => void
+  atlasSearch: string
+  setAtlasSearch: (query: string) => void
 }
 
 const DEFAULTS: TweakState = {
@@ -47,6 +52,8 @@ export function AppProvider({ children, countries }: { children: ReactNode; coun
   const [showTweaks, setShowTweaks] = useState(false)
   const [introSeen, setIntroSeen] = useState(false)
   const [era, setEra] = useState<Era>('current')
+  const [mapTheme, setMapTheme] = useState<MapTheme>('none')
+  const [atlasSearch, setAtlasSearch] = useState('')
 
   const lang = tweakState.language
 
@@ -104,6 +111,8 @@ export function AppProvider({ children, countries }: { children: ReactNode; coun
       introSeen, dismissIntro,
       lang,
       era, setEra,
+      mapTheme, setMapTheme,
+      atlasSearch, setAtlasSearch,
     }}>
       {children}
     </AppContext.Provider>

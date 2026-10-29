@@ -56,6 +56,14 @@ export const I18N: I18nMap = {
       lineTwo: "i otkrij tajne naših 195 država",
       cta: "Kreni istraživati",
     },
+    map: {
+      history: "Godina", current: "Danas", thematic: "Tematske boje",
+      none: "Bez bojenja", population: "Stanovništvo", area: "Površina",
+      currentOnly: "Dostupno samo za današnje granice",
+      historicalSource: "Povijesne granice: Historical Basemaps (rad u tijeku)",
+      historicalLicense: "GPL-3.0",
+      low: "Manje", high: "Više",
+    },
     facts: {
       landlocked: "Država nema izlaz na more",
       noRivers: "Nema stalnih rijeka",
@@ -121,6 +129,14 @@ export const I18N: I18nMap = {
       lineTwo: "and discover the secrets of 195 countries",
       cta: "Start exploring",
     },
+    map: {
+      history: "Year", current: "Today", thematic: "Thematic colors",
+      none: "No coloring", population: "Population", area: "Area",
+      currentOnly: "Available for current borders only",
+      historicalSource: "Historical borders: Historical Basemaps (work in progress)",
+      historicalLicense: "GPL-3.0",
+      low: "Less", high: "More",
+    },
     facts: {
       landlocked: "Country has no access to the sea",
       noRivers: "No permanent rivers",
@@ -185,6 +201,14 @@ export const I18N: I18nMap = {
       lineOne: "Klicke irgendwo auf die Erde",
       lineTwo: "und entdecke die Geheimnisse von 195 Ländern",
       cta: "Erkunden",
+    },
+    map: {
+      history: "Jahr", current: "Heute", thematic: "Thematische Farben",
+      none: "Ohne Färbung", population: "Bevölkerung", area: "Fläche",
+      currentOnly: "Nur für heutige Grenzen verfügbar",
+      historicalSource: "Historische Grenzen: Historical Basemaps (in Arbeit)",
+      historicalLicense: "GPL-3.0",
+      low: "Weniger", high: "Mehr",
     },
     facts: {
       landlocked: "Das Land hat keinen Meereszugang",

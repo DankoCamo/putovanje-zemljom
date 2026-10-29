@@ -1,7 +1,7 @@
 'use client'
 import dynamic from 'next/dynamic'
 import { Country } from '@/lib/types'
-import type { Era } from '@/context/AppContext'
+import type { Era, MapTheme } from '@/context/AppContext'
 
 const GlobeDynamic = dynamic(() => import('./Globe'), { ssr: false })
 
@@ -13,6 +13,7 @@ interface Props {
   rotationSpeed: number
   showCapitals: boolean
   showBorders: boolean
+  mapTheme: MapTheme
   focusIso: string | null
   lang: 'hr' | 'en' | 'de'
   era: Era

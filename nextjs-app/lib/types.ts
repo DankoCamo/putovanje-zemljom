@@ -97,6 +97,7 @@ export interface I18nT {
   tweaks: Record<string, string>
   intro: Record<string, string>
   facts: Record<string, string>
+  map: Record<string, string>
 }
 
 export type I18nMap = Record<Lang, I18nT>

@@ -4,7 +4,7 @@ import * as THREE from 'three'
 import { Country } from '@/lib/types'
 import { CAPS } from '@/data/capitals'
 import { NAME_TO_ISO_1960 } from '@/data/countries-1960'
-import type { Era } from '@/context/AppContext'
+import type { Era, MapTheme } from '@/context/AppContext'
 
 interface TooltipState {
   name: { hr: string; en: string; de: string }
@@ -26,6 +26,8 @@ declare global {
     COUNTRY_GEO_1960?: Record<string, GeoGeometry>
     COUNTRY_BORDER_LINES_1960?: number[][][]
     GEO_1960_READY?: boolean
+    HISTORICAL_GEO?: Record<string, Record<string, GeoGeometry>>
+    HISTORICAL_BORDER_LINES?: Record<string, number[][][]>
   }
 }
 
@@ -241,28 +243,107 @@ function decodeTopoJSON1960(topo: any): void {
 
   window.COUNTRY_GEO_1960 = geo
   window.COUNTRY_BORDER_LINES_1960 = lines
+  window.HISTORICAL_GEO = { ...window.HISTORICAL_GEO, '1960': geo }
+  window.HISTORICAL_BORDER_LINES = { ...window.HISTORICAL_BORDER_LINES, '1960': lines }
   window.GEO_1960_READY = true
   window.dispatchEvent(new Event('geo-1960-ready'))
 }
 
-function findCountryAtLatLng1960(lat: number, lng: number, countries: Country[]): { country: Country | null; iso: string } | null {
-  const geo = window.COUNTRY_GEO_1960
+function getEraGeometry(era: Era): Record<string, GeoGeometry> | undefined {
+  if (era === 'current') return window.COUNTRY_GEO
+  if (era === '1960') return window.COUNTRY_GEO_1960
+  return window.HISTORICAL_GEO?.[era]
+}
+
+function getEraBorders(era: Era): number[][][] {
+  if (era === 'current') return window.COUNTRY_BORDER_LINES ?? []
+  if (era === '1960') return window.COUNTRY_BORDER_LINES_1960 ?? []
+  return window.HISTORICAL_BORDER_LINES?.[era] ?? []
+}
+
+function geometryRings(geometry: GeoGeometry): number[][][] {
+  if (geometry.type === 'Polygon') return geometry.coordinates as unknown as number[][][]
+  return (geometry.coordinates as unknown as number[][][][]).flat()
+}
+
+function geometryPolygons(geometry: GeoGeometry): number[][][][] {
+  if (geometry.type === 'Polygon') return [geometry.coordinates as unknown as number[][][]]
+  return geometry.coordinates as unknown as number[][][][]
+}
+
+function pointInGeometry(lng: number, lat: number, geometry: GeoGeometry): boolean {
+  return geometryPolygons(geometry).some(rings =>
+    pointInRing(lng, lat, rings[0]) && !rings.slice(1).some(ring => pointInRing(lng, lat, ring))
+  )
+}
+
+function findCountryAtLatLngForEra(lat: number, lng: number, countries: Country[], era: Era): { country: Country | null; iso: string } | null {
+  const geo = getEraGeometry(era)
   if (!geo) return null
   for (const [iso, geom] of Object.entries(geo)) {
-    let hit = false
-    if (geom.type === 'Polygon') {
-      hit = pointInRing(lng, lat, geom.coordinates[0] as unknown as number[][])
-    } else {
-      hit = (geom.coordinates as unknown as number[][][][][]).some(
-        poly => pointInRing(lng, lat, poly[0] as unknown as number[][])
-      )
-    }
-    if (hit) {
-      const country = countries.find(c => c.iso === iso) || null
-      return { country, iso }
+    if (pointInGeometry(lng, lat, geom)) {
+      return { country: countries.find(country => country.iso === iso) || null, iso }
     }
   }
   return null
+}
+
+function decodeHistoricalGeoJSON(year: Exclude<Era, 'current' | '1960'>, collection: any, countries: Country[]): void {
+  const aliases: Record<string, string> = {
+    'Congo Free State': 'CD', 'Belgian Congo': 'CD', 'Democratic Republic of the Congo': 'CD',
+    'French Equatorial Africa': 'CG', 'French West Africa': 'SN', 'Gold Coast': 'GH',
+    'German East Africa': 'TZ', 'Tanganyika': 'TZ', 'Nyasaland': 'MW', 'Northern Rhodesia': 'ZM',
+    'Southern Rhodesia': 'ZW', 'Bechuanaland': 'BW', 'Basutoland': 'LS', 'Swaziland': 'SZ',
+    'Italian East Africa': 'ET', 'Ethiopian Empire': 'ET', 'Siam': 'TH', 'Persia': 'IR',
+    'Transjordan': 'JO', 'Palestine': 'PS', 'British India': 'IN', 'East Pakistan': 'BD',
+    'West Pakistan': 'PK', 'Ceylon': 'LK', 'Burma': 'MM', 'Indochina': 'VN',
+    'French Indochina': 'VN', 'Dutch East Indies': 'ID', 'Netherlands East Indies': 'ID',
+    'Republic of China': 'TW', 'Formosa': 'TW', 'Korea': 'KR', 'North Korea': 'KP',
+    'South Korea': 'KR', 'German Reich': 'DE', 'Nazi Germany': 'DE', 'Trucial Oman': 'AE',
+    'Rwanda (Belgium)': 'RW', 'Angola (Portugal)': 'AO', 'Mozambique (Portugal)': 'MZ',
+    'Madagascar (France)': 'MG', 'Syria (France)': 'SY', 'Algeria (France)': 'DZ',
+    'Morocco (France)': 'MA', 'French Cameroons': 'CM', 'Southern Cameroon': 'CM',
+    'Eritrea (Italy)': 'ER', 'Ethiopia (Italy)': 'ET', 'French Somaliland': 'DJ',
+    'Yemen (UK)': 'YE', 'Italian Somaliland': 'SO', 'British Somaliland': 'SO',
+    'Spanish Sahara': 'EH', 'Rio De Oro': 'EH', 'Walbis Bay': 'NA', 'Xinjiang': 'CN',
+    'Cochin China': 'VN', 'Tonkin': 'VN', 'Fezzan (Frech Lybia)': 'LY',
+    'Guinea-Bissau (Portugal)': 'GW', 'Manchuria': 'CN', 'Byelarus': 'BY',
+    'Bosnia and Herzegovina': 'BA', 'Macedonia': 'MK', 'Czech Republic': 'CZ',
+    'Korea, Democratic People\'s Republic of': 'KP', 'Turkish Cypriot-administered area': 'CY',
+    'Japan (USA)': 'JP', 'Rhodesia': 'ZW', 'Saar Protectorate': 'DE',
+  }
+  const normalizedNames = new Map<string, string>()
+  countries.forEach(country => {
+    Object.values(country.name).forEach(name => {
+      normalizedNames.set(name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(), country.iso)
+    })
+  })
+  const geo: Record<string, GeoGeometry> = {}
+  const lines: number[][][] = []
+
+  for (const feature of collection.features ?? []) {
+    const name = feature.properties?.NAME
+    const normalizedName = typeof name === 'string'
+      ? name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+      : ''
+    const iso = (name && (NAME_TO_ISO_1960[name] || aliases[name])) || normalizedNames.get(normalizedName)
+    const geometry = feature.geometry
+    if (!iso || !geometry || !['Polygon', 'MultiPolygon'].includes(geometry.type)) continue
+
+    const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates
+    if (geo[iso]) {
+      const existing = geo[iso].type === 'Polygon' ? [geo[iso].coordinates] : geo[iso].coordinates
+      geo[iso] = { type: 'MultiPolygon', coordinates: [...existing, ...polygons] as any }
+    } else {
+      geo[iso] = { type: geometry.type, coordinates: geometry.coordinates }
+    }
+  }
+
+  Object.values(geo).forEach(geometry => {
+    geometryRings(geometry).forEach(ring => lines.push(ring))
+  })
+  window.HISTORICAL_GEO = { ...window.HISTORICAL_GEO, [year]: geo }
+  window.HISTORICAL_BORDER_LINES = { ...window.HISTORICAL_BORDER_LINES, [year]: lines }
 }
 
 interface Props {
@@ -273,12 +354,13 @@ interface Props {
   rotationSpeed: number
   showCapitals: boolean
   showBorders: boolean
+  mapTheme: MapTheme
   focusIso: string | null
   lang: 'hr' | 'en' | 'de'
   era: Era
 }
 
-export default function Globe({ countries, onSelectCountry, onSelectHistorical, theme, rotationSpeed, showCapitals, showBorders, focusIso, lang, era }: Props) {
+export default function Globe({ countries, onSelectCountry, onSelectHistorical, theme, rotationSpeed, showCapitals, showBorders, mapTheme, focusIso, lang, era }: Props) {
   const mountRef = useRef<HTMLDivElement>(null)
   const stateRef = useRef<any>({})
   const [tooltip, setTooltip] = useState<TooltipState | null>(null)
@@ -321,6 +403,21 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
     const earthMesh = new THREE.Mesh(new THREE.SphereGeometry(earthRadius, 96, 96), earthMat)
     earthGroup.add(earthMesh)
 
+    const themeCanvas = document.createElement('canvas')
+    themeCanvas.width = 2048
+    themeCanvas.height = 1024
+    const themeContext = themeCanvas.getContext('2d')!
+    const themeTexture = new THREE.CanvasTexture(themeCanvas)
+    themeTexture.colorSpace = THREE.SRGBColorSpace
+    const themeMaterial = new THREE.MeshBasicMaterial({
+      map: themeTexture,
+      transparent: true,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    })
+    const themeMesh = new THREE.Mesh(new THREE.SphereGeometry(earthRadius * 1.003, 96, 96), themeMaterial)
+    earthGroup.add(themeMesh)
+
     const textureUrls = {
       light: 'https://unpkg.com/three-globe@2.31.1/example/img/earth-blue-marble.jpg',
       dark: 'https://unpkg.com/three-globe@2.31.1/example/img/earth-night.jpg',
@@ -356,6 +453,45 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
     const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(earthRadius * 1.08, 64, 64), atmosphereMat)
     earthGroup.add(atmosphere)
 
+    function buildTheme() {
+      themeContext.clearRect(0, 0, themeCanvas.width, themeCanvas.height)
+      const currentGeo = window.COUNTRY_GEO
+      const activeTheme = stateRef.current.mapTheme as MapTheme | undefined
+      if (!currentGeo || activeTheme === 'none' || stateRef.current.era !== 'current') {
+        themeMesh.visible = false
+        themeTexture.needsUpdate = true
+        return
+      }
+      themeMesh.visible = true
+
+      const metric = activeTheme === 'population' ? 'population' : 'area'
+      const max = Math.max(...countries.map(country => country[metric]))
+      const colors = ['#e7f2ef', '#b9ddd5', '#78bdb2', '#388e88', '#155a63']
+      themeContext.globalAlpha = 0.78
+      for (const country of countries) {
+        const geometry = currentGeo[country.iso]
+        if (!geometry) continue
+        const value = country[metric]
+        const fraction = Math.log(Math.max(value, 1)) / Math.log(Math.max(max, 2))
+        const index = Math.min(colors.length - 1, Math.floor(fraction * colors.length))
+        const path = new Path2D()
+        geometryRings(geometry).forEach(ring => {
+          if (ring.length < 3) return
+          ring.forEach(([lng, lat], pointIndex) => {
+            const x = ((lng + 180) / 360) * themeCanvas.width
+            const y = ((90 - lat) / 180) * themeCanvas.height
+            if (pointIndex === 0) path.moveTo(x, y)
+            else path.lineTo(x, y)
+          })
+          path.closePath()
+        })
+        themeContext.fillStyle = colors[index]
+        themeContext.fill(path, 'evenodd')
+      }
+      themeContext.globalAlpha = 1
+      themeTexture.needsUpdate = true
+    }
+
     const bordersGroup = new THREE.Group()
     earthGroup.add(bordersGroup)
 
@@ -366,7 +502,8 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
         ;(c.material as THREE.Material)?.dispose()
         bordersGroup.remove(c)
       }
-      const lines = (stateRef.current.era === '1960' ? window.COUNTRY_BORDER_LINES_1960 : window.COUNTRY_BORDER_LINES) || []
+      buildTheme()
+      const lines = getEraBorders(stateRef.current.era || 'current')
       if (!lines.length) return
       const isDark = stateRef.current.theme === 'dark'
       const mat = new THREE.LineBasicMaterial({ color: isDark ? 0xffee88 : 0xffffff, transparent: true, opacity: 0.95, depthWrite: false })
@@ -400,7 +537,7 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
         highlightGroup.remove(c)
       }
       highlightMats.length = 0
-      const geoSource = stateRef.current.era === '1960' ? window.COUNTRY_GEO_1960 : window.COUNTRY_GEO
+      const geoSource = getEraGeometry(stateRef.current.era || 'current')
       if (!iso || !geoSource) return
       const geom = geoSource[iso]
       if (!geom) return
@@ -467,7 +604,7 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
         const my = -((p.clientY - rect.top) / rect.height) * 2 + 1
         const raycaster = new THREE.Raycaster()
         raycaster.setFromCamera(new THREE.Vector2(mx, my), camera)
-        if (stateRef.current.era !== '1960') {
+        if (stateRef.current.era === 'current') {
           const hits = raycaster.intersectObjects(pinsGroup.children)
           const visHits = hits.filter(h => h.object.visible)
           if (visHits.length && visHits[0].object.userData.country) {
@@ -478,7 +615,7 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
           }
         }
         setTooltip(null)
-        renderer.domElement.style.cursor = stateRef.current.era === '1960' ? 'crosshair' : 'grab'
+        renderer.domElement.style.cursor = stateRef.current.era === 'current' ? 'grab' : 'crosshair'
       }
     }
     function onUp() { isDragging = false }
@@ -507,15 +644,10 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
         const worldPt = earthHits[0].point
         const localPt = earthGroup.worldToLocal(worldPt.clone())
         const [lat, lng] = vec3ToLatLng(localPt)
-        if (currentEra === '1960') {
-          const result = findCountryAtLatLng1960(lat, lng, countries)
-          if (result) {
-            if (result.country) stateRef.current.onSelectCountry?.(result.country)
-            else stateRef.current.onSelectHistorical?.(result.iso)
-          }
-        } else {
-          const found = findCountryAtLatLng(lat, lng, countries)
-          if (found) stateRef.current.onSelectCountry?.(found)
+        const result = findCountryAtLatLngForEra(lat, lng, countries, currentEra)
+        if (result) {
+          if (result.country) stateRef.current.onSelectCountry?.(result.country)
+          else stateRef.current.onSelectHistorical?.(result.iso)
         }
       }
     }
@@ -555,8 +687,9 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
         const camToPoint = worldPos.clone().sub(camera.position).normalize()
         const pointNormal = worldPos.clone().normalize()
         const vis = camToPoint.dot(pointNormal) < -0.05
-        po.dot.visible = vis && !!stateRef.current.showCapitals
-        po.ring.visible = vis && !!stateRef.current.showCapitals
+        const currentEra = stateRef.current.era === 'current'
+        po.dot.visible = vis && currentEra && !!stateRef.current.showCapitals
+        po.ring.visible = vis && currentEra && !!stateRef.current.showCapitals
       })
       renderer.render(scene, camera)
     }
@@ -565,7 +698,7 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
     stateRef.current = {
       ...stateRef.current,
       scene, camera, renderer, earthGroup, pinObjects, earthMat, atmosphereMat, loadTex,
-      bordersGroup, buildBorders,
+      bordersGroup, buildBorders, buildTheme,
       highlightGroup, buildHighlight,
       onSelectCountry,
       onSelectHistorical,
@@ -613,11 +746,17 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
   useEffect(() => { stateRef.current.rotationSpeed = rotationSpeed }, [rotationSpeed])
   useEffect(() => { stateRef.current.showCapitals = showCapitals }, [showCapitals])
   useEffect(() => { stateRef.current.showBorders = showBorders }, [showBorders])
+  useEffect(() => {
+    stateRef.current.mapTheme = mapTheme
+    if (stateRef.current.buildTheme) stateRef.current.buildTheme()
+  }, [mapTheme])
   useEffect(() => { stateRef.current.onSelectCountry = onSelectCountry }, [onSelectCountry])
   useEffect(() => { stateRef.current.onSelectHistorical = onSelectHistorical }, [onSelectHistorical])
   useEffect(() => { stateRef.current.lang = lang }, [lang])
   useEffect(() => {
     stateRef.current.era = era
+    if (stateRef.current.buildBorders) stateRef.current.buildBorders()
+    if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(stateRef.current.selectedIso || null)
     if (era === '1960') {
       if (!window.GEO_1960_READY) {
         fetch('/countries-1960.json')
@@ -631,9 +770,25 @@ export default function Globe({ countries, onSelectCountry, onSelectHistorical, 
         if (stateRef.current.buildBorders) stateRef.current.buildBorders()
         if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(null)
       }
-    } else {
+    } else if (era === 'current') {
       if (stateRef.current.buildBorders) stateRef.current.buildBorders()
       if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(stateRef.current.selectedIso || null)
+    } else if (window.HISTORICAL_GEO?.[era]) {
+      if (stateRef.current.buildBorders) stateRef.current.buildBorders()
+      if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(stateRef.current.selectedIso || null)
+    } else {
+      fetch(`/historical-${era}.geojson`)
+        .then(response => {
+          if (!response.ok) throw new Error(`Failed to load ${era} map`)
+          return response.json()
+        })
+        .then(collection => {
+          decodeHistoricalGeoJSON(era, collection, countries)
+          if (stateRef.current.era !== era) return
+          if (stateRef.current.buildBorders) stateRef.current.buildBorders()
+          if (stateRef.current.buildHighlight) stateRef.current.buildHighlight(stateRef.current.selectedIso || null)
+        })
+        .catch(error => console.error(`Failed to load historical map for ${era}:`, error))
     }
   }, [era])
   useEffect(() => {
